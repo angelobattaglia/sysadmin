@@ -1,0 +1,942 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.9">
+    
+    
+      
+        <title>Links and Ideas - System Administration</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.120efc48.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.9647289d.min.css">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#links-and-ideas" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="System Administration" class="md-header__button md-logo" aria-label="System Administration" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            System Administration
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Links and Ideas
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="System Administration" class="md-nav__button md-logo" aria-label="System Administration" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    System Administration
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Welcome to Fundamentals of tooling and Sys Admin principles in software
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Docker/" class="md-nav__link">
+        Docker
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Git/" class="md-nav__link">
+        Git fundamentals
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Links and Ideas
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Links and Ideas
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    Tools
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#books-used" class="md-nav__link">
+    Books used
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#helpful-external-resources" class="md-nav__link">
+    Helpful External Resources
+  </a>
+  
+    <nav class="md-nav" aria-label="Helpful External Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-unix-command-line-shell-scripting" class="md-nav__link">
+    The UNIX command line (shell scripting)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practice-regular-expressions" class="md-nav__link">
+    Practice Regular Expressions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latex-and-markdown" class="md-nav__link">
+    Latex and Markdown
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make" class="md-nav__link">
+    Make
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-and-mercurial" class="md-nav__link">
+    Git and Mercurial
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#competitive-programming" class="md-nav__link">
+    Competitive Programming
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#java" class="md-nav__link">
+    Java
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-based-learning" class="md-nav__link">
+    Project based learning
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-to-find-software" class="md-nav__link">
+    Where to find software
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#youtube-channels-that-have-interesting-content" class="md-nav__link">
+    YouTube Channels that have interesting content
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notes-on-privacy-and-security" class="md-nav__link">
+    Notes on privacy and security
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Make/" class="md-nav__link">
+        Make
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MkDocs/" class="md-nav__link">
+        Introduction to MkDocs
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SSH/" class="md-nav__link">
+        SSH
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8">
+          C
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="C" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          C
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C/Chapter_01/" class="md-nav__link">
+        Starting C programming
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_9">
+          Linking
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linking" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Linking
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linking/Basics/" class="md-nav__link">
+        Basics
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10">
+          Shell
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Shell" data-md-level="1">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          Shell
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Shell/Chapter_01/" class="md-nav__link">
+        Starting Shell Programming
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    Tools
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#books-used" class="md-nav__link">
+    Books used
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#helpful-external-resources" class="md-nav__link">
+    Helpful External Resources
+  </a>
+  
+    <nav class="md-nav" aria-label="Helpful External Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-unix-command-line-shell-scripting" class="md-nav__link">
+    The UNIX command line (shell scripting)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practice-regular-expressions" class="md-nav__link">
+    Practice Regular Expressions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latex-and-markdown" class="md-nav__link">
+    Latex and Markdown
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make" class="md-nav__link">
+    Make
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-and-mercurial" class="md-nav__link">
+    Git and Mercurial
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#competitive-programming" class="md-nav__link">
+    Competitive Programming
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#java" class="md-nav__link">
+    Java
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-based-learning" class="md-nav__link">
+    Project based learning
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-to-find-software" class="md-nav__link">
+    Where to find software
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#youtube-channels-that-have-interesting-content" class="md-nav__link">
+    YouTube Channels that have interesting content
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notes-on-privacy-and-security" class="md-nav__link">
+    Notes on privacy and security
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="links-and-ideas">Links and Ideas</h1>
+<h2 id="tools">Tools</h2>
+<p>The operating system is our development environment. You can't control GUIs
+programmatically. You can't "script" GUIs. You can't create your own workflow.
+A command-line based approach to computer programming.</p>
+<ul>
+<li>Minimal linux/FreeBSD/OpenBSD distribution running dwm</li>
+<li>A posix compliant shell, such as dash</li>
+<li>C</li>
+<li>Make</li>
+<li>Git</li>
+<li>The UNIX core utilities</li>
+<li><a href="https://leanpub.com/the-tao-of-tmux">tmux</a>, vim, <a href="https://www.cs.cmu.edu/~gilpin/tutorial/">gdb</a>, valgrind</li>
+</ul>
+<h2 id="books-used">Books used</h2>
+<ul>
+<li>The C Programming Language K&amp;R 2nd Edition</li>
+<li>Understanding and Using C pointers by Richard Reese</li>
+<li>Practical C programming</li>
+<li>C in a nutshell</li>
+<li>21st Century C</li>
+<li>Mastering Algorithms With C</li>
+<li>Numerical Recipes In C The Art Of ... 2nd edition, W. Press, S. Teukolsky, W. Vetterling, B. Flannery</li>
+<li><a href="https://en.wikipedia.org/wiki/Algorithms_%2B_Data_Structures_%3D_Programs#:~:text=Algorithms%20%2B%20Data%20Structures%20%3D%20Programs%20is,algorithm%20optimal%20for%20sorted%20lists.">Algorithms + Data Structure = Programs</a></li>
+<li><a href="https://missing.csail.mit.edu/">The missing semester</a></li>
+</ul>
+<h2 id="helpful-external-resources">Helpful External Resources</h2>
+<ul>
+<li><a href="https://missing.csail.mit.edu/2020/command-line/">Command line environment</a></li>
+<li><a href="khttps://www3.nd.edu/~pbui/teaching/cse.20289.sp20/">Course of Systems Programming by Notre Dame University</a></li>
+<li><a href="https://www.cs.cmu.edu/~15131/f17/">Great practical ideas in Computer Science by CMU</a></li>
+<li><a href="https://bellard.org/">Fabrice Bellard's projects</a></li>
+<li><a href="http://www.catb.org/~esr/writings/taoup/html/ch01s06.html">The UNIX philosophy</a></li>
+<li><a href="https://docs.freebsd.org/en/books/handbook/basics/">FreeBSD manual (good intro to UNIX)</a></li>
+<li><a href="https://wiki.gentoo.org/wiki/Handbook:AMD64">The Gentoo Handbook</a></li>
+<li><a href="https://wiki.archlinux.org/">The Archwiki</a></li>
+<li><a href="https://github.com/openbsd/src">OpenBSD, a minimalist, general purpose OS</a></li>
+<li><a href="https://wiki.installgentoo.com/wiki/Programming_resources#God-tier_books"><em>THE</em> Ultimate Book List</a></li>
+<li><a href="https://wiki.installgentoo.com/wiki/Programming_concepts">Programming Concepts to know</a></li>
+<li><a href="https://teachyourselfcs.com/">Teach yourself CS</a></li>
+<li><a href="https://app.diagrams.net/">Diagrams of all sorts (ER, flowchart, UML)</a></li>
+<li><a href="https://github.com/C-Chads/tinygl">Minimalist graphics library</a></li>
+<li><a href="https://www.thinkwiki.org/wiki/ThinkWiki">Thinkpad wiki</a></li>
+</ul>
+<h3 id="the-unix-command-line-shell-scripting">The UNIX command line (shell scripting)</h3>
+<ul>
+<li><a href="https://github.com/dylanaraps/pure-sh-bible">Pure Shell Bible by Dylan Araps</a></li>
+<li><a href="https://www.commandlinefu.com/commands/browse">commandlinefu</a></li>
+<li><a href="https://linuxcommand.org/lc3_learning_the_shell.php">learning the shell</a></li>
+<li><a href="https://explainshell.com/">Shell commands explained</a></li>
+<li><a href="https://terminalsare.sexy/">Terminals are sexy</a></li>
+<li><a href="http://xahlee.info/linux/linux_common_commands.html">Various Linux tutorials</a></li>
+<li><a href="cht.sh">cheat sheet shell</a></li>
+</ul>
+<h3 id="practice-regular-expressions">Practice Regular Expressions</h3>
+<ul>
+<li><a href="https://alf.nu/RegexGolf">RegexGolf</a></li>
+<li><a href="https://regexone.com/">Regexone</a></li>
+<li><a href="https://regex101.com/">Regex101</a></li>
+</ul>
+<h3 id="latex-and-markdown">Latex and Markdown</h3>
+<ul>
+<li><a href="https://www.xm1math.net/texmaker/">Free latex editor (although worse than the Make and Vi approach)</a></li>
+<li><a href="https://en.wikibooks.org/wiki/LaTeX">Latex tutorial</a></li>
+<li><a href="https://www.markdownguide.org/cheat-sheet/">Markdown tutorial 1</a></li>
+<li><a href="https://www.markdownguide.org/basic-syntax/">Markdown tutorial 2</a></li>
+<li><a href="https://www.markdownguide.org/extended-syntax/">Markdown tutorial 3</a></li>
+</ul>
+<h3 id="make">Make</h3>
+<ul>
+<li><a href="https://makefiletutorial.com/">Makefile tutorial</a></li>
+<li><a href="https://www.gnu.org/software/make/manual/make.html">GNU Make documentation</a></li>
+<li><a href="https://pubs.opengroup.org/onlinepubs/9699919799/utilities/make.html">make</a></li>
+<li><a href="https://github.com/kostrahb/Generic-C-Project">Generic C Project template</a></li>
+<li><a href="https://stackoverflow.com/questions/2605253/what-is-a-good-project-structure-in-c">Simple Project Structure in C</a></li>
+<li><a href="https://hiltmon.com/blog/2013/07/03/a-simple-c-plus-plus-project-structure/">Simple Project Structure in Cpp</a></li>
+</ul>
+<h3 id="git-and-mercurial">Git and Mercurial</h3>
+<ul>
+<li><a href="https://mercurial.aragost.com/kick-start/en/basic/#creating-a-repository">Mercurial short guide</a></li>
+<li><a href="https://git-scm.com/doc">Git learning material</a></li>
+<li><a href="https://git-scm.com/book/en/v2">Progit book</a></li>
+</ul>
+<h3 id="competitive-programming">Competitive Programming</h3>
+<ul>
+<li><a href="https://www.learncpp.com/">Learn C++</a></li>
+<li><a href="https://stackoverflow.com/questions/388242/the-definitive-c-book-guide-and-list?rq=1">C++ book list</a></li>
+<li><a href="https://cses.fi/book/book.pdf">Competitive Programmer's handbook</a></li>
+<li><a href="https://cp-algorithms.com/">Competitive programming algorithms (cp-algorithms.com)</a></li>
+<li><a href="http://acm.cs.buap.mx/downloads/Programming_Challenges.pdf">Programming Challenges, Skiena</a></li>
+<li><a href="https://www.comp.nus.edu.sg/~stevenha/myteaching/competitive_programming/cp1.pdf">National University of Singapore book on Competitive Programming</a> <br />
+There's douzens of websites with problems and competitions. <br>
+Focus on these to start off:</li>
+<li><a href="https://cses.fi">Practice: cses.fi</a></li>
+<li><a href="https://www.codewars.com/users/angbat">Practice: codewars.com</a></li>
+<li><a href="https://adventofcode.com">adventofcode.com</a></li>
+<li><a href="https://codeforces.com">Practice: Codeforces</a></li>
+<li><a href="https://projecteuler.net/archives">Practice: Project Euler</a></li>
+<li><a href="https://a2oj.com/Ladders.html">Practice: Codeforces ladder</a></li>
+</ul>
+<h3 id="java">Java</h3>
+<ul>
+<li><a href="https://whichjdk.com/">Which Open JDK distribution to pick up?</a></li>
+<li><a href="https://docs.aws.amazon.com/corretto/latest/corretto-8-ug/downloads-list.html">Recommended JDK distribution: Amazon Corretto 8</a></li>
+<li><a href="https://maven.apache.org/index.html">Maven Documentation</a></li>
+<li><a href="https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html">Quick Maven Tutorial</a></li>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/">Java 8 standard API documentation</a></li>
+<li><a href="https://docs.oracle.com/javase/tutorial/index.html">Java 8 tutorial</a></li>
+</ul>
+<h3 id="project-based-learning">Project based learning</h3>
+<ul>
+<li><a href="https://github.com/geohot/fromthetransistor">From the Transistor by George Hotz</a></li>
+<li><a href="https://github.com/practical-tutorials/project-based-learning">Aggregator of project tutorials</a></li>
+<li><a href="https://wiki.installgentoo.com/images/5/5c/Programming-Projects-for-N00bz.jpg">Projects list for beginners</a></li>
+<li><a href="https://github.com/AlgoryL/Projects-from-Scratch">Projects from Scratch</a></li>
+<li><a href="https://brennan.io/2015/01/16/write-a-shell-in-c/">Shell</a></li>
+<li><a href="https://viewsourcecode.org/snaptoken/kilo/">Text Editor</a></li>
+<li><a href="https://ruslanspivak.com/lsbasi-part1/">Interpreter</a></li>
+<li><a href="https://compilers.iecc.com/crenshaw/">Compiler</a></li>
+<li><a href="https://github.com/DoctorWkt/acwj">Compiler 2</a></li>
+<li><a href="http://jstimpfle.de/blah/buildsystem/buildsystem.html">Build System</a></li>
+<li><a href="https://cstack.github.io/db_tutorial/">Database</a></li>
+<li><a href="https://browser.engineering/">Building a Web Browser</a></li>
+<li><a href="https://www.pbr-book.org/3ed-2018/Preface">Physically based rendering book (Computer Graphics)</a></li>
+<li><a href="http://ergoemacs.org/index.html">Emacs</a></li>
+</ul>
+<h3 id="where-to-find-software">Where to find software</h3>
+<ul>
+<li><a href="http://texteditors.org/cgi-bin/wiki.pl?EditorIndex">Text Editors</a></li>
+<li><a href="https://suckless.org/rocks">Suckless recommandations</a></li>
+<li><a href="http://harmful.cat-v.org/software/">Good software according to cat-v.org</a></li>
+<li><a href="https://github.com/mayfrost/guides/blob/master/ALTERNATIVES.md">Alternatives list</a></li>
+<li><a href="https://wiki.installgentoo.com/wiki/List_of_recommended_GNU/Linux_software">Other list of recommandations</a></li>
+<li><a href="https://wiki.installgentoo.com/wiki/GNU/Linux_ricing">Linux ricing guide</a></li>
+<li><a href="https://usesthis.com/">Uses This</a></li>
+<li><a href="https://github.com/ibraheemdev/modern-unix">Modern UNIX utilities</a></li>
+</ul>
+<h3 id="youtube-channels-that-have-interesting-content">YouTube Channels that have interesting content</h3>
+<ul>
+<li><a href="https://www.youtube.com/c/ThePrimeagen/videos">Vi and Tmux</a></li>
+<li><a href="https://www.youtube.com/c/SystemCrafters/videos">Emacs</a></li>
+<li><a href="https://www.youtube.com/c/DistroTube/videos">Linux</a></li>
+<li><a href="https://www.youtube.com/user/caveofprogramming">SWE</a></li>
+<li><a href="https://www.youtube.com/user/mycodeschool">Basics</a></li>
+<li><a href="https://www.youtube.com/user/MentalOutlawStudios">Privacy</a></li>
+</ul>
+<h3 id="notes-on-privacy-and-security">Notes on privacy and security</h3>
+<ul>
+<li><a href="https://justdeleteme.xyz/it">How hard is it to delete your accounts?</a></li>
+<li><a href="https://www.schneier.com/">Schneier's Blog on Security</a></li>
+<li><a href="https://krebsonsecurity.com/">Krebs's Blog on Security</a></li>
+<li><a href="https://justgetmydata.com/it">On Data collection and Deletion</a></li>
+<li><a href="https://www.darkpatterns.org/">Dark Patterns</a></li>
+<li><a href="https://cyberpunked.org/">Other resources on the topic</a></li>
+<li><a href="https://stallman.org/">RMS' website</a></li>
+<li><a href="https://spyware.neocities.org/articles/index.html">Software that is considered spyware</a></li>
+<li><a href="https://www.privacytools.io/">Privacy tools</a></li>
+<li><a href="https://deletezoom.com">Zoom</a></li>
+<li><a href="https://deletemicrosoft.com">Microsoft</a></li>
+<li><a href="https://deletefacebook.com/">Facebook</a></li>
+<li><a href="https://deletewhatsapp.com/">WhatsApp</a></li>
+<li><a href="https://telegra.ph/Why-Using-WhatsApp-Is-Dangerous-01-30-4">Why using WhatsApp is dangerous</a></li>
+<li><a href="https://www.securemessagingapps.com">Messaging apps</a></li>
+<li><a href="https://keybase.io">Keybase</a></li>
+<li><a href="https://www.socialcooling.com/">Social Cooling: the effects of big data analysis</a></li>
+</ul>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../Git/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Git fundamentals" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Git fundamentals
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../Make/" class="md-footer__link md-footer__link--next" aria-label="Next: Make" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Make
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.6e54b5cd.min.js"></script>
+      
+    
+  </body>
+</html>

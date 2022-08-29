@@ -1,0 +1,814 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.9">
+    
+    
+      
+        <title>Git fundamentals - System Administration</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.120efc48.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.9647289d.min.css">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#git-fundamentals" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="System Administration" class="md-header__button md-logo" aria-label="System Administration" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            System Administration
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Git fundamentals
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="System Administration" class="md-nav__button md-logo" aria-label="System Administration" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    System Administration
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Welcome to Fundamentals of tooling and Sys Admin principles in software
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Docker/" class="md-nav__link">
+        Docker
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Git fundamentals
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Git fundamentals
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#git-basic-configuration" class="md-nav__link">
+    git basic configuration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-starter" class="md-nav__link">
+    git starter
+  </a>
+  
+    <nav class="md-nav" aria-label="git starter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#working-with-remote" class="md-nav__link">
+    Working with Remote:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#branching" class="md-nav__link">
+    Branching:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-merge" class="md-nav__link">
+    How to merge:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-make-a-pull-request" class="md-nav__link">
+    How to make a pull request:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tagging-a-particular-commit" class="md-nav__link">
+    Tagging a particular commit:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extras" class="md-nav__link">
+    extras:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Links/" class="md-nav__link">
+        Links and Ideas
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Make/" class="md-nav__link">
+        Make
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MkDocs/" class="md-nav__link">
+        Introduction to MkDocs
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SSH/" class="md-nav__link">
+        SSH
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8">
+          C
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="C" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          C
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C/Chapter_01/" class="md-nav__link">
+        Starting C programming
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_9">
+          Linking
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linking" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Linking
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linking/Basics/" class="md-nav__link">
+        Basics
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10">
+          Shell
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Shell" data-md-level="1">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          Shell
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Shell/Chapter_01/" class="md-nav__link">
+        Starting Shell Programming
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#git-basic-configuration" class="md-nav__link">
+    git basic configuration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-starter" class="md-nav__link">
+    git starter
+  </a>
+  
+    <nav class="md-nav" aria-label="git starter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#working-with-remote" class="md-nav__link">
+    Working with Remote:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#branching" class="md-nav__link">
+    Branching:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-merge" class="md-nav__link">
+    How to merge:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-make-a-pull-request" class="md-nav__link">
+    How to make a pull request:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tagging-a-particular-commit" class="md-nav__link">
+    Tagging a particular commit:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extras" class="md-nav__link">
+    extras:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="git-fundamentals">Git fundamentals</h1>
+<p>Add new remotes:</p>
+<pre><code>git remote add gitlab git@gitlab.com:Username/Repo.git
+git remote add github git@github.com:Username/Repo.git
+</code></pre>
+<p>To push over gitlab/github master:</p>
+<pre><code>git push gitlab master
+git push github master
+</code></pre>
+<p>To list all of the remotes for a repository:</p>
+<pre><code>git remote -v 
+</code></pre>
+<p>Listing branches:</p>
+<pre><code>git branch #To see local branches 
+git branch -r #To see  branches 
+git branch -a #To see both local and remote branches 
+</code></pre>
+<p>The easiest way to switch branch on Git is to use the “git checkout”
+command and specify the name of the branch you want to switch to. 
+If the destination branch does not exist, you have to append the “-b” option, 
+otherwise you won’t be able to switch to that branch.</p>
+<pre><code>git checkout &lt;existing_branch&gt;
+</code></pre>
+<p>Create new branch:</p>
+<pre><code>git checkout -b &quot;&lt;new_branch&gt;&quot;
+
+</code></pre>
+<pre><code>to add : https://stackoverflow.com/questions/37937984/git-refusing-to-merge-unrelated-histories-on-rebase
+TODOs: Git worktree, git bare repository, git submodules
+</code></pre>
+<h3 id="git-basic-configuration">git basic configuration</h3>
+<p>When you install git for the first time on the new machine. Set the default command line editor as vim.</p>
+<pre><code>    git config --global core.editor vim
+    git config --global user.name &quot;John Doe&quot;
+    git config --global user.email &quot;john@doe.net&quot;
+    git config --global color.ui &quot;auto&quot;
+</code></pre>
+<p>To list all of the configs:</p>
+<pre><code>    git config --list
+</code></pre>
+<h3 id="git-starter">git starter</h3>
+<p>To start a new git project on github:</p>
+<pre><code>    git init
+    add .gitignore for the files you don't want to commit
+    git remote add 'name of the remote' www.github.com/angelobattaglia/progetto
+    git remote set-url 'name of the remote' git@github.com:angelobattaglia/progetto.git
+    git add -A or git add .
+    git commit -a (-m &quot;first commit&quot;)
+    git push 'name of the remote' master
+</code></pre>
+<p>If you want remove some file that you added to the .gitignore later:</p>
+<pre><code>    git rm --cached filetoremovefromthecache
+</code></pre>
+<p>If you want to show all of the graph of commits just type:</p>
+<pre><code>    git log --all --graph --decorate (--oneline)
+</code></pre>
+<p>Updating local repository from remote:</p>
+<pre><code>    git pull
+</code></pre>
+<h4 id="working-with-remote">Working with Remote:</h4>
+<p>To see how many remote for a git repository:</p>
+<pre><code>git remote -v
+</code></pre>
+<p>To add a remote to a git repository with https:</p>
+<pre><code>    git remote add &quot;Remote 1&quot; www.github.com/angelo/progetto
+    git remote add &quot;Remote 2&quot; www.gitlab.com/angelo/progetto
+</code></pre>
+<p>In my case:</p>
+<pre><code>    git remote add origin www.github...
+</code></pre>
+<p>Push:</p>
+<pre><code>    git push &quot;remote name&quot; &quot;branch name&quot;
+    git push all
+</code></pre>
+<h4 id="branching">Branching:</h4>
+<pre><code>    git branch 'new-branch-name' 'from-branch'
+</code></pre>
+<p>To change from the current branch, for example, to another one use the argument "checkout":</p>
+<pre><code>    git checkout 'branchname'
+</code></pre>
+<p>List all the branches of a given project:</p>
+<pre><code>    git branch -a
+</code></pre>
+<pre><code>    git branch -r   # list remote branches
+</code></pre>
+<pre><code>    git branch      # list local branches
+</code></pre>
+<p>Local branches: colored white. Remote branches: colored red "remotes/origin"
+If you want to abort all current changes that aren't committed:</p>
+<pre><code>    git reset --hard
+</code></pre>
+<p>If you just want to restore one file:</p>
+<pre><code>    git checkout filetorestore.txt
+</code></pre>
+<p>Branch pointed as "HEAD" is the latest committed among all the branches</p>
+<h4 id="how-to-merge">How to merge:</h4>
+<p>You can merge one or more branches. In the current branch, run:</p>
+<pre><code>    git merge &quot;branch-one&quot;
+    git merge &quot;branch-one&quot; &quot;branch-two&quot;
+</code></pre>
+<h4 id="how-to-make-a-pull-request">How to make a pull request:</h4>
+<ul>
+<li>Find a project you want to contribute to</li>
+<li>Fork it</li>
+<li>Clone it to your local system</li>
+<li>Make a new branch</li>
+<li>Make your changes</li>
+<li>Push it back to your repo</li>
+<li>Click the Compare &amp; pull request button</li>
+<li>Click Create pull request to open a new pull request</li>
+</ul>
+<h4 id="tagging-a-particular-commit">Tagging a particular commit:</h4>
+<pre><code>    git tag &quot;tag name&quot; # Will tag the commit HEAD (the latest) if not specified otherwise
+    git tag &quot;hash of the commit&quot; &quot;tag name&quot; # Will tag the specific commit tagged with that hash
+</code></pre>
+<p>List all the tags:</p>
+<pre><code>    git tag
+</code></pre>
+<h4 id="extras">extras:</h4>
+<p>Testing, Travis-CI, AppVeyor-CD and code-coverage. How to licence your software.
+https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository#disclaimer
+https://opensource.guide/legal/</p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../Docker/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Docker" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Docker
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../Links/" class="md-footer__link md-footer__link--next" aria-label="Next: Links and Ideas" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Links and Ideas
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.6e54b5cd.min.js"></script>
+      
+    
+  </body>
+</html>
