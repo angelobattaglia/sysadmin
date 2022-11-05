@@ -45,7 +45,7 @@ Say yes, and then try to download a repo with SSH. If you have problems:
 
 - [Generating Multiple keys for different remote servers to connect to](https://docs.gitlab.com/ee/ssh/)
 
-## Multiple SSH keys for different servers
+### Multiple SSH keys for different servers
 
 You have 3 accounts in 3 hosting services. You need a key for each of those.
 
@@ -65,4 +65,13 @@ You can use the -t option to specify the type of key to create.
 ssh-keygen -b 2048 -t rsa
 ```
 
-## GPG
+## GPG (GNU privacy guard)
+
+First off, we need to generate a key pair. A key pair is composed by a private key and a
+public key.
+
+```shell
+gpg --full-gen-key
+```
+
+It will generate a file, usually, in the $(HOME)/.gnupg directory.

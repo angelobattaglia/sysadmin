@@ -130,6 +130,7 @@ A command-line based approach to computer programming requires:
 ### Licencing and DevOps
 - [Licencing a repository: GitHub](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository#disclaimer)
 - [Opensource licencing](https://opensource.guide/legal/)
+- [Choose a Licence](https://choosealicense.com)
 - Testing, Travis-CI, AppVeyor-CD and code-coverage. 
 ### Notes on privacy and security
 - [How hard is it to delete your accounts?](https://justdeleteme.xyz/it)
