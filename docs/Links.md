@@ -74,11 +74,15 @@ A command-line based approach to computer programming requires:
 - [Generic C Project template](https://github.com/kostrahb/Generic-C-Project)
 - [Simple Project Structure in C](https://stackoverflow.com/questions/2605253/what-is-a-good-project-structure-in-c)
 - [Simple Project Structure in Cpp](https://hiltmon.com/blog/2013/07/03/a-simple-c-plus-plus-project-structure/)
+
 ### Git and Mercurial
+
 - [Mercurial short guide](https://mercurial.aragost.com/kick-start/en/basic/#creating-a-repository)
 - [Git learning material](https://git-scm.com/doc)
 - [Progit book](https://git-scm.com/book/en/v2)
+
 ### Competitive Programming
+
 - [Learn C++](https://www.learncpp.com/)
 - [C++ book list](https://stackoverflow.com/questions/388242/the-definitive-c-book-guide-and-list?rq=1)
 - [FANG interview questions](https://hollow-wood-560.notion.site/Coding-questions-FAANG-prep-9cdf280e5f30425fa188cbbaa6d1998c)
@@ -94,7 +98,9 @@ A command-line based approach to computer programming requires:
 - [Practice: Codeforces ladder](https://a2oj.com/Ladders.html)
 - [Practice: Project Euler](https://projecteuler.net/archives)
 - [Practice: AtCoder]()
+
 ### Project based learning
+
 - [From the Transistor by George Hotz](https://github.com/geohot/fromthetransistor)
 - [Aggregator of project tutorials](https://github.com/practical-tutorials/project-based-learning)
 - [Projects list for beginners](https://wiki.installgentoo.com/images/5/5c/Programming-Projects-for-N00bz.jpg)
@@ -110,7 +116,9 @@ A command-line based approach to computer programming requires:
 - [Building a Web Browser](https://browser.engineering/)
 - [Physically based rendering book (Computer Graphics)](https://www.pbr-book.org/3ed-2018/Preface)
 - [Emacs](http://ergoemacs.org/index.html)
+
 ### Where to find software
+
 - [Text Editors](http://texteditors.org/cgi-bin/wiki.pl?EditorIndex)
 - [Suckless recommandations](https://suckless.org/rocks)
 - [Good software according to cat-v.org](http://harmful.cat-v.org/software/)
@@ -120,33 +128,18 @@ A command-line based approach to computer programming requires:
 - [Uses This](https://usesthis.com/)
 - [Modern UNIX utilities](https://github.com/ibraheemdev/modern-unix)
 - ["The Book of Secret Knowledge"](https://github.com/trimstray/the-book-of-secret-knowledge)
+
 ### Java
+
 - [Which Open JDK distribution to pick up?](https://whichjdk.com/)
 - [Recommended JDK distribution: Amazon Corretto 8](https://docs.aws.amazon.com/corretto/latest/corretto-8-ug/downloads-list.html)
 - [Maven Documentation](https://maven.apache.org/index.html)
 - [Quick Maven Tutorial](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html)
 - [Java 8 standard API documentation](https://docs.oracle.com/javase/8/docs/api/)
 - [Java 8 tutorial](https://docs.oracle.com/javase/tutorial/index.html)
-### Licencing and DevOps
+
+### Licencing Software
+
 - [Licencing a repository: GitHub](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository#disclaimer)
 - [Opensource licencing](https://opensource.guide/legal/)
 - [Choose a Licence](https://choosealicense.com)
-- Testing, Travis-CI, AppVeyor-CD and code-coverage. 
-### Notes on privacy and security
-- [How hard is it to delete your accounts?](https://justdeleteme.xyz/it)
-- [Schneier's Blog on Security](https://www.schneier.com/)
-- [Krebs's Blog on Security](https://krebsonsecurity.com/)
-- [On Data collection and Deletion](https://justgetmydata.com/it)
-- [Dark Patterns](https://www.darkpatterns.org/)
-- [Other resources on the topic](https://cyberpunked.org/)
-- [RMS' website](https://stallman.org/)
-- [Software that is considered spyware](https://spyware.neocities.org/articles/index.html)
-- [Privacy tools](https://www.privacytools.io/)
-- [Zoom](https://deletezoom.com)
-- [Microsoft](https://deletemicrosoft.com)
-- [Facebook](https://deletefacebook.com/)
-- [WhatsApp](https://deletewhatsapp.com/)
-- [Why using WhatsApp is dangerous](https://telegra.ph/Why-Using-WhatsApp-Is-Dangerous-01-30-4)
-- [Messaging apps](https://www.securemessagingapps.com)
-- [Keybase](https://keybase.io)
-- [Social Cooling: the effects of big data analysis](https://www.socialcooling.com/)
