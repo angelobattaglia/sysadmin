@@ -5,27 +5,46 @@ References:
 - [Gentoo AMD 64 handbook](https://wiki.gentoo.org/wiki/Handbook:AMD64)
 - [Archwiki](archwiki.org)
 
-Linux Drive and Partition Config (dd, fdisk, resize2fs, lsblk, tune2fs and more)
-Sed, Awk, Grep, Cat, gpg, ssh, git, make, zsh
+The best guide to follow is the Archwiki, as it is always up to date. This guide, however, will give more explanations throughout
+the process, by spending more words for each step.
 
 ## Setting the keymap
 
-List all of the available keymaps: root@archiso $ ls /usr/share/kbd/keymaps/**/*.map.gz
+When in "root@archiso", list all of the available keymaps:
+
+```shell
+ls /usr/share/kbd/keymaps/**/*.map.gz
+```
+
 loadkeys: it-latin1
 
 ## Internet through the Smartphone tethering
 
 - [Setting up the internet](https://wiki.archlinux.org/title/iwd)
 
+We enter the deamon called "iwd" which then appears as a prompt where we input commands
+
 ```shell
 iwctl
+```
+
+This command prompts out the list of wi-fi devices through which we can connect to a given network
+
+```shell
 device list
-station device scan
-station device get-networks
-station device connect SSID
+```
+
+Let's call the device that we're using "wlan0", SSID is the name of the chosen network we want to connect, it then asks for a passphrase. More details about this [on this link](https://wiki.archlinux.org/title/iwd).
+
+```shell
+station wlan0 scan
+station wlan0 get-networks
+station wlan0 connect SSID
 ```
 
 ### Checking Network connection
+
+After connecting, type "exit" while on the iwd daemon to quit the program, then, as root user, type the following to check out if the connection was successful.
 
 ```shell
 ping google.com
@@ -43,7 +62,7 @@ Verify it with
 timedatectl status
 ```
 
-## Partitioning our disk with fdisk or cfdisk
+## Disk partitioning with fdisk
 
 /dev/sda is the name of the drive we want to partition, where it will be mounted
 the various parts of the system, among which "/mnt", where the OS will be mounted.
@@ -62,6 +81,7 @@ g # to create a GPT partition table, for EFI
 ### Using fdisk to create three partitions
 
 Partitioning the EFI system (the modern BIOS substitute)
+
 ```shell
 n
 # input number "1"
@@ -69,18 +89,25 @@ n
 +550M # megabytes for the EFI partition # Don't input "n" again, there's a question .. answer "yes"
 ```
 
-Creo la partizione swap:
+### Swap partition
+
+```shell
 n
 2
-enter (default 2048)
-+2G due gigabytes per la partizione swap
+# enter (default 2048)
++2G # two gigabytes for the swap partition
+```
 
-Creo la partizione per il mio sistema, concedo il resto della memoria:
+### Linux file system partition
+
+```shell
 n
 3
-enter (dafault 2048)
-enter e da' lo spazio rimanente
-deve essere di tipo linux file system
+# enter (dafault 2048)
+# enter allocates the remaining storage for the linux file system
+```
+
+### If any mistakes are being made
 
 Se sbaglio ad assegnare il tipo di partizione delle prime due, posso
 sempre premere t e il numero della partizione alla quale devo cambiare
@@ -100,6 +127,8 @@ L per listare i tipi di partizione disponibili
 e cambia da linux file system a Linux swap
 
 Alla fine premi w per scrivere sul disco le nostre impostazioni
+
+## File System
 
 Ora dobbiamo creare i diversi tipi di File System rispettivamente per
 ogni partizione che abbiamo creato:
@@ -121,8 +150,11 @@ mount /dev/sda3 /mnt
 Ora che è montato, installo il sistema di base con pacstrap:
 pacstrap /mnt base linux linux-firmware
 
-Ora generiamo il nostro file system tabular fstab (informazioni sulla partizione):
+### Generating system tabular file fstab which gives infos on our partitioning:
+
+```shell
 genfstab -U /mnt >> /mnt/etc/fstab
+```
 
 Ora diventiamo root della nostra installazione, ovvero passiamo dalla pendrive alla partizione /dev/sda3:
 arch-chroot /mnt
@@ -130,15 +162,37 @@ arch-chroot /mnt
 Ora il prompt dovrebbe essere cambiato, perché siamo nel nostro sistema operativo di base nella nostra partizione
 /dev/sda3 dentro il nostro file system
 
-Ora devo settare la time zone:
+## Locale
+
+Setting the time-zone
+
+```shell
 ln -sf /usr/share/zoneinfo/Europe/Rome /etc/localtime
-(se devo listare allora: ls /usr/share/zoneinfo)
+```
+
+If I had to list them all
+
+```shell
+ls /usr/share/zoneinfo
+```
 
 System clock settings:
-hwclock --systohc
 
-installa vim per editare dei files:
+```shell
+hwclock --systohc
+```
+
+### Install neovim
+
+```shell
 pacman -Sy neovim
+```
+
+### Install iwd
+
+```shell
+pacman -Sy iwd
+```
 
 vim /etc/locale.gen, ogni linea di codice è commentata, devo togliere il commento seguente, per arch americano:
 en_US.UTF-8 UTF-8
@@ -154,12 +208,21 @@ scrivo ad esempio: t440p
 
 ## Modifichiamo il file hosts
 
+```shell
 vim /etc/hosts
-E riporto le seguenti..
+  ```
+
+And I write on it the following..
+
+```shell
 127.0.0.1 localhost
 ::1 localhost
 127.0.1.1 t440p.localdomain t440p
+```
 
+## Creating the Users with their relative passwords
+
+The default user is the root user. To create other users
 Ora devo creare diversi utenti e una password, altrimenti ci sarà solo 1 utente, ovvero il root
 Per la password root basta passwd senza nessun parametro da linea di comando:
 passwd
@@ -184,14 +247,25 @@ Tolgo il commento da:
 # %wheel ALL=(ALL) ALL // Da rivedere bene ..
 ```
 
-Installo sudo:
-pacman -S sudo
-Installo grub:
-pacman -S grub
-Installo altri pacchetti utili:
-pacman -S efibootmgr dosfstools os-prober mtools
+### Install sudo
 
-Mounting the EFI partition: 
+```shell
+pacman -S sudo
+```
+
+### Install grub
+
+```shell
+pacman -S grub
+```
+
+### Installing other useful packages
+
+```shell
+pacman -S efibootmgr dosfstools os-prober mtools
+  ```
+
+### Mounting the EFI partition
 mkdir /boot/EFI
 mount /dev/sda1 /boot/EFI
 This doesn't work (don't know why):
@@ -207,6 +281,9 @@ This works:
 grub-install --target=x86_64-efi --bootloader-id=GRUB --efi-directory=/boot/EFI --removable
 Creo il file delle configurazioni di grub:
 grub-mkconfig -o /boot/grub/grub.cfg
+
+Install iwd onto the machine before leaving the live installation process
+https://bbs.archlinux.org/viewtopic.php?id=187798
 
 Install network manager:
 pacman -S networkmanager vim xorg
@@ -227,3 +304,6 @@ Ora ci sono due strade:
 vai su storage
 clicca sulla iso
 ed rimuove lo storage e restart
+
+Linux Drive and Partition Config (dd, fdisk, resize2fs, lsblk, tune2fs and more)
+Sed, Awk, Grep, Cat, gpg, ssh, git, make, zsh

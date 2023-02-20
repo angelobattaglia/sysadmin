@@ -65,6 +65,8 @@ A command-line based approach to computer programming requires:
 - [Free latex editor (although worse than the Make and Vi approach)](https://www.xm1math.net/texmaker/)
 - [Latex tutorial](https://en.wikibooks.org/wiki/LaTeX)
 - [Markdown tutorial](https://www.markdownguide.org/)
+- [Handwritten formula classification to Latex](https://detexify.kirelabs.org/classify.html)
+- [Math Editor for Latex](https://editor.codecogs.com/)
 
 ### Make
 
