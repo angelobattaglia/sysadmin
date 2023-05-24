@@ -39,6 +39,7 @@ Let's call the device that we're using "wlan0", SSID is the name of the chosen n
 ```shell
 station wlan0 scan
 station wlan0 get-networks
+# SSID is the name of the Wi-Fi
 station wlan0 connect SSID
 ```
 
@@ -54,6 +55,10 @@ ping google.com
 
 ```shell
 timedatectl set-ntp true
+```
+
+```shell
+timedatectl set-timezone Europe/Rome
 ```
 
 Verify it with
@@ -80,7 +85,7 @@ g # to create a GPT partition table, for EFI
 
 ### Using fdisk to create three partitions
 
-Partitioning the EFI system (the modern BIOS substitute)
+### Partitioning the EFI system (the modern BIOS substitute)
 
 ```shell
 n
@@ -107,7 +112,7 @@ n
 # enter allocates the remaining storage for the linux file system
 ```
 
-### If any mistakes are being made
+#### If any mistakes are being made
 
 Se sbaglio ad assegnare il tipo di partizione delle prime due, posso
 sempre premere t e il numero della partizione alla quale devo cambiare
@@ -133,22 +138,35 @@ Alla fine premi w per scrivere sul disco le nostre impostazioni
 Ora dobbiamo creare i diversi tipi di File System rispettivamente per
 ogni partizione che abbiamo creato:
 
-Ora si deve creare il file system Fat 32 su sda1:
+Creating the file system Fat 32 in sda1
+```shell
 mkfs.fat -F32 /dev/sda1
+```
 
-Ora si deve creare lo swap nella partizione dedita allo swap:
+Create the SWAP partition in sda2
+```shell
 mkswap /dev/sda2
-attivo la partizione swap:
+```
+
+Activate the SWAP partition
+```shell
 swapon /dev/sda2
+```
 
-Creo il file system nella 3 partizione:
+Creating the File System in sda3
+```shell
 mkfs.ext4 /dev/sda3
+```
 
-Mount the file system:
+Mount the file system
+```shell
 mount /dev/sda3 /mnt
+```
 
-Ora che è montato, installo il sistema di base con pacstrap:
+Installing the base system with pacstrap
+```shell
 pacstrap /mnt base linux linux-firmware
+```
 
 ### Generating system tabular file fstab which gives infos on our partitioning:
 
@@ -194,17 +212,26 @@ pacman -Sy neovim
 pacman -Sy iwd
 ```
 
-vim /etc/locale.gen, ogni linea di codice è commentata, devo togliere il commento seguente, per arch americano:
+### Setting up the Locale
+
+```shell
+vim /etc/locale.gen
 en_US.UTF-8 UTF-8
+```
 
-Minuto 18:10 (checkpoint)
+Now activate the locale.gen 
 
-Ora entra questo comando, per attivare il locale.gen 
+```shell
 locale-gen
+```
 
-Ora dobbiamo creare un config file su /etc/hostname
+Creating a config file on /etc/hostname
+
+```shell
 vim /etc/hostname
-scrivo ad esempio: t440p
+# I could write, for example:
+t440p
+```
 
 ## Modifichiamo il file hosts
 
@@ -263,7 +290,7 @@ pacman -S grub
 
 ```shell
 pacman -S efibootmgr dosfstools os-prober mtools
-  ```
+```
 
 ### Mounting the EFI partition
 mkdir /boot/EFI
@@ -290,6 +317,7 @@ pacman -S networkmanager vim xorg
 
 Enable networkmanager with systemd:
 systemctl enable NetworkManager
+systemctl enable iwd
 
 exit the chroot
 exit

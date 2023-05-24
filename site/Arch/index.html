@@ -8,8 +8,14 @@
       
       
       
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../Docker/">
+      
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.9">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.13">
     
     
       
@@ -17,12 +23,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.120efc48.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.85bb2934.min.css">
       
-        
-        <link rel="stylesheet" href="../assets/stylesheets/palette.9647289d.min.css">
-        
       
+
     
     
     
@@ -35,23 +39,21 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
+    
   </head>
   
   
-    
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+    <body dir="ltr">
   
     
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -71,7 +73,9 @@
     
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="System Administration" class="md-header__button md-logo" aria-label="System Administration" data-md-component="logo">
       
@@ -115,7 +119,7 @@
       </label>
       <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
         </button>
       </nav>
@@ -127,7 +131,7 @@
           <div class="md-search-result__meta">
             Initializing search
           </div>
-          <ol class="md-search-result__list"></ol>
+          <ol class="md-search-result__list" role="presentation"></ol>
         </div>
       </div>
     </div>
@@ -196,7 +200,7 @@
   
     <li class="md-nav__item md-nav__item--active">
       
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
         
@@ -261,16 +265,104 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#partitioning-our-disk-with-fdisk-or-cfdisk" class="md-nav__link">
-    Partitioning our disk with fdisk or cfdisk
+  <a href="#disk-partitioning-with-fdisk" class="md-nav__link">
+    Disk partitioning with fdisk
   </a>
   
-    <nav class="md-nav" aria-label="Partitioning our disk with fdisk or cfdisk">
+    <nav class="md-nav" aria-label="Disk partitioning with fdisk">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#using-fdisk-to-create-three-partitions" class="md-nav__link">
     Using fdisk to create three partitions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partitioning-the-efi-system-the-modern-bios-substitute" class="md-nav__link">
+    Partitioning the EFI system (the modern BIOS substitute)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#swap-partition" class="md-nav__link">
+    Swap partition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux-file-system-partition" class="md-nav__link">
+    Linux file system partition
+  </a>
+  
+    <nav class="md-nav" aria-label="Linux file system partition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#if-any-mistakes-are-being-made" class="md-nav__link">
+    If any mistakes are being made
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-system" class="md-nav__link">
+    File System
+  </a>
+  
+    <nav class="md-nav" aria-label="File System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generating-system-tabular-file-fstab-which-gives-infos-on-our-partitioning" class="md-nav__link">
+    Generating system tabular file fstab which gives infos on our partitioning:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#locale" class="md-nav__link">
+    Locale
+  </a>
+  
+    <nav class="md-nav" aria-label="Locale">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-neovim" class="md-nav__link">
+    Install neovim
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-iwd" class="md-nav__link">
+    Install iwd
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-the-locale" class="md-nav__link">
+    Setting up the Locale
   </a>
   
 </li>
@@ -284,6 +376,47 @@
   <a href="#modifichiamo-il-file-hosts" class="md-nav__link">
     Modifichiamo il file hosts
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-the-users-with-their-relative-passwords" class="md-nav__link">
+    Creating the Users with their relative passwords
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating the Users with their relative passwords">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-sudo" class="md-nav__link">
+    Install sudo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-grub" class="md-nav__link">
+    Install grub
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-other-useful-packages" class="md-nav__link">
+    Installing other useful packages
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mounting-the-efi-partition" class="md-nav__link">
+    Mounting the EFI partition
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -396,17 +529,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_9">
+        <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
           Compilation Process
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Compilation Process" data-md-level="1">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_9">
           <span class="md-nav__icon md-icon"></span>
           Compilation Process
@@ -444,17 +578,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" >
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_10">
+        <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
           Shell
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Shell" data-md-level="1">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_10">
           <span class="md-nav__icon md-icon"></span>
           Shell
@@ -542,16 +677,104 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#partitioning-our-disk-with-fdisk-or-cfdisk" class="md-nav__link">
-    Partitioning our disk with fdisk or cfdisk
+  <a href="#disk-partitioning-with-fdisk" class="md-nav__link">
+    Disk partitioning with fdisk
   </a>
   
-    <nav class="md-nav" aria-label="Partitioning our disk with fdisk or cfdisk">
+    <nav class="md-nav" aria-label="Disk partitioning with fdisk">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#using-fdisk-to-create-three-partitions" class="md-nav__link">
     Using fdisk to create three partitions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partitioning-the-efi-system-the-modern-bios-substitute" class="md-nav__link">
+    Partitioning the EFI system (the modern BIOS substitute)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#swap-partition" class="md-nav__link">
+    Swap partition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux-file-system-partition" class="md-nav__link">
+    Linux file system partition
+  </a>
+  
+    <nav class="md-nav" aria-label="Linux file system partition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#if-any-mistakes-are-being-made" class="md-nav__link">
+    If any mistakes are being made
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-system" class="md-nav__link">
+    File System
+  </a>
+  
+    <nav class="md-nav" aria-label="File System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generating-system-tabular-file-fstab-which-gives-infos-on-our-partitioning" class="md-nav__link">
+    Generating system tabular file fstab which gives infos on our partitioning:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#locale" class="md-nav__link">
+    Locale
+  </a>
+  
+    <nav class="md-nav" aria-label="Locale">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-neovim" class="md-nav__link">
+    Install neovim
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-iwd" class="md-nav__link">
+    Install iwd
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-the-locale" class="md-nav__link">
+    Setting up the Locale
   </a>
   
 </li>
@@ -568,6 +791,47 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#creating-the-users-with-their-relative-passwords" class="md-nav__link">
+    Creating the Users with their relative passwords
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating the Users with their relative passwords">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-sudo" class="md-nav__link">
+    Install sudo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-grub" class="md-nav__link">
+    Install grub
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-other-useful-packages" class="md-nav__link">
+    Installing other useful packages
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mounting-the-efi-partition" class="md-nav__link">
+    Mounting the EFI partition
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -576,10 +840,11 @@
               </div>
             
           
-          <div class="md-content" data-md-component="content">
-            <article class="md-content__inner md-typeset">
-              
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
                 
+                  
 
 
 <h1 id="arch-linux">Arch linux</h1>
@@ -588,31 +853,42 @@
 <li><a href="https://wiki.gentoo.org/wiki/Handbook:AMD64">Gentoo AMD 64 handbook</a></li>
 <li><a href="archwiki.org">Archwiki</a></li>
 </ul>
-<p>Linux Drive and Partition Config (dd, fdisk, resize2fs, lsblk, tune2fs and more)
-Sed, Awk, Grep, Cat, gpg, ssh, git, make, zsh</p>
+<p>The best guide to follow is the Archwiki, as it is always up to date. This guide, however, will give more explanations throughout
+the process, by spending more words for each step.</p>
 <h2 id="setting-the-keymap">Setting the keymap</h2>
-<p>List all of the available keymaps: root@archiso $ ls /usr/share/kbd/keymaps/*<em>/</em>.map.gz
-loadkeys: it-latin1</p>
+<p>When in "root@archiso", list all of the available keymaps:</p>
+<pre><code class="language-shell">ls /usr/share/kbd/keymaps/**/*.map.gz
+</code></pre>
+<p>loadkeys: it-latin1</p>
 <h2 id="internet-through-the-smartphone-tethering">Internet through the Smartphone tethering</h2>
 <ul>
 <li><a href="https://wiki.archlinux.org/title/iwd">Setting up the internet</a></li>
 </ul>
+<p>We enter the deamon called "iwd" which then appears as a prompt where we input commands</p>
 <pre><code class="language-shell">iwctl
-device list
-station device scan
-station device get-networks
-station device connect SSID
+</code></pre>
+<p>This command prompts out the list of wi-fi devices through which we can connect to a given network</p>
+<pre><code class="language-shell">device list
+</code></pre>
+<p>Let's call the device that we're using "wlan0", SSID is the name of the chosen network we want to connect, it then asks for a passphrase. More details about this <a href="https://wiki.archlinux.org/title/iwd">on this link</a>.</p>
+<pre><code class="language-shell">station wlan0 scan
+station wlan0 get-networks
+# SSID is the name of the Wi-Fi
+station wlan0 connect SSID
 </code></pre>
 <h3 id="checking-network-connection">Checking Network connection</h3>
+<p>After connecting, type "exit" while on the iwd daemon to quit the program, then, as root user, type the following to check out if the connection was successful.</p>
 <pre><code class="language-shell">ping google.com
 </code></pre>
 <h2 id="making-sure-our-system-clock-is-accurate">Making sure our system clock is accurate</h2>
 <pre><code class="language-shell">timedatectl set-ntp true
 </code></pre>
+<pre><code class="language-shell">timedatectl set-timezone Europe/Rome
+</code></pre>
 <p>Verify it with</p>
 <pre><code class="language-shell">timedatectl status
 </code></pre>
-<h2 id="partitioning-our-disk-with-fdisk-or-cfdisk">Partitioning our disk with fdisk or cfdisk</h2>
+<h2 id="disk-partitioning-with-fdisk">Disk partitioning with fdisk</h2>
 <p>/dev/sda is the name of the drive we want to partition, where it will be mounted
 the various parts of the system, among which "/mnt", where the OS will be mounted.</p>
 <pre><code class="language-shell">fdisk -l # listing all of our drives
@@ -622,23 +898,25 @@ fdisk /dev/sda #the name of the Disk where I want to install Arch
 <pre><code class="language-shell">g # to create a GPT partition table, for EFI
 </code></pre>
 <h3 id="using-fdisk-to-create-three-partitions">Using fdisk to create three partitions</h3>
-<p>Partitioning the EFI system (the modern BIOS substitute)</p>
+<h3 id="partitioning-the-efi-system-the-modern-bios-substitute">Partitioning the EFI system (the modern BIOS substitute)</h3>
 <pre><code class="language-shell">n
 # input number &quot;1&quot;
 # press the enter key (default 2048)
 +550M # megabytes for the EFI partition # Don't input &quot;n&quot; again, there's a question .. answer &quot;yes&quot;
 </code></pre>
-<p>Creo la partizione swap:
-n
+<h3 id="swap-partition">Swap partition</h3>
+<pre><code class="language-shell">n
 2
-enter (default 2048)
-+2G due gigabytes per la partizione swap</p>
-<p>Creo la partizione per il mio sistema, concedo il resto della memoria:
-n
+# enter (default 2048)
++2G # two gigabytes for the swap partition
+</code></pre>
+<h3 id="linux-file-system-partition">Linux file system partition</h3>
+<pre><code class="language-shell">n
 3
-enter (dafault 2048)
-enter e da' lo spazio rimanente
-deve essere di tipo linux file system</p>
+# enter (dafault 2048)
+# enter allocates the remaining storage for the linux file system
+</code></pre>
+<h4 id="if-any-mistakes-are-being-made">If any mistakes are being made</h4>
 <p>Se sbaglio ad assegnare il tipo di partizione delle prime due, posso
 sempre premere t e il numero della partizione alla quale devo cambiare
 il tipo:</p>
@@ -654,48 +932,76 @@ L per listare i tipi di partizione disponibili
 19 per Linux swap
 e cambia da linux file system a Linux swap</p>
 <p>Alla fine premi w per scrivere sul disco le nostre impostazioni</p>
+<h2 id="file-system">File System</h2>
 <p>Ora dobbiamo creare i diversi tipi di File System rispettivamente per
 ogni partizione che abbiamo creato:</p>
-<p>Ora si deve creare il file system Fat 32 su sda1:
-mkfs.fat -F32 /dev/sda1</p>
-<p>Ora si deve creare lo swap nella partizione dedita allo swap:
-mkswap /dev/sda2
-attivo la partizione swap:
-swapon /dev/sda2</p>
-<p>Creo il file system nella 3 partizione:
-mkfs.ext4 /dev/sda3</p>
-<p>Mount the file system:
-mount /dev/sda3 /mnt</p>
-<p>Ora che è montato, installo il sistema di base con pacstrap:
-pacstrap /mnt base linux linux-firmware</p>
-<p>Ora generiamo il nostro file system tabular fstab (informazioni sulla partizione):
-genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</p>
+<p>Creating the file system Fat 32 in sda1</p>
+<pre><code class="language-shell">mkfs.fat -F32 /dev/sda1
+</code></pre>
+<p>Create the SWAP partition in sda2</p>
+<pre><code class="language-shell">mkswap /dev/sda2
+</code></pre>
+<p>Activate the SWAP partition</p>
+<pre><code class="language-shell">swapon /dev/sda2
+</code></pre>
+<p>Creating the File System in sda3</p>
+<pre><code class="language-shell">mkfs.ext4 /dev/sda3
+</code></pre>
+<p>Mount the file system</p>
+<pre><code class="language-shell">mount /dev/sda3 /mnt
+</code></pre>
+<p>Installing the base system with pacstrap</p>
+<pre><code class="language-shell">pacstrap /mnt base linux linux-firmware
+</code></pre>
+<h3 id="generating-system-tabular-file-fstab-which-gives-infos-on-our-partitioning">Generating system tabular file fstab which gives infos on our partitioning:</h3>
+<pre><code class="language-shell">genfstab -U /mnt &gt;&gt; /mnt/etc/fstab
+</code></pre>
 <p>Ora diventiamo root della nostra installazione, ovvero passiamo dalla pendrive alla partizione /dev/sda3:
 arch-chroot /mnt</p>
 <p>Ora il prompt dovrebbe essere cambiato, perché siamo nel nostro sistema operativo di base nella nostra partizione
 /dev/sda3 dentro il nostro file system</p>
-<p>Ora devo settare la time zone:
-ln -sf /usr/share/zoneinfo/Europe/Rome /etc/localtime
-(se devo listare allora: ls /usr/share/zoneinfo)</p>
-<p>System clock settings:
-hwclock --systohc</p>
-<p>installa vim per editare dei files:
-pacman -Sy neovim</p>
-<p>vim /etc/locale.gen, ogni linea di codice è commentata, devo togliere il commento seguente, per arch americano:
-en_US.UTF-8 UTF-8</p>
-<p>Minuto 18:10 (checkpoint)</p>
-<p>Ora entra questo comando, per attivare il locale.gen 
-locale-gen</p>
-<p>Ora dobbiamo creare un config file su /etc/hostname
-vim /etc/hostname
-scrivo ad esempio: t440p</p>
+<h2 id="locale">Locale</h2>
+<p>Setting the time-zone</p>
+<pre><code class="language-shell">ln -sf /usr/share/zoneinfo/Europe/Rome /etc/localtime
+</code></pre>
+<p>If I had to list them all</p>
+<pre><code class="language-shell">ls /usr/share/zoneinfo
+</code></pre>
+<p>System clock settings:</p>
+<pre><code class="language-shell">hwclock --systohc
+</code></pre>
+<h3 id="install-neovim">Install neovim</h3>
+<pre><code class="language-shell">pacman -Sy neovim
+</code></pre>
+<h3 id="install-iwd">Install iwd</h3>
+<pre><code class="language-shell">pacman -Sy iwd
+</code></pre>
+<h3 id="setting-up-the-locale">Setting up the Locale</h3>
+<pre><code class="language-shell">vim /etc/locale.gen
+en_US.UTF-8 UTF-8
+</code></pre>
+<p>Now activate the locale.gen </p>
+<pre><code class="language-shell">locale-gen
+</code></pre>
+<p>Creating a config file on /etc/hostname</p>
+<pre><code class="language-shell">vim /etc/hostname
+# I could write, for example:
+t440p
+</code></pre>
 <h2 id="modifichiamo-il-file-hosts">Modifichiamo il file hosts</h2>
-<p>vim /etc/hosts
-E riporto le seguenti..
+<pre><code class="language-shell">vim /etc/hosts
+  ```
+
+And I write on it the following..
+
+```shell
 127.0.0.1 localhost
 ::1 localhost
-127.0.1.1 t440p.localdomain t440p</p>
-<p>Ora devo creare diversi utenti e una password, altrimenti ci sarà solo 1 utente, ovvero il root
+127.0.1.1 t440p.localdomain t440p
+</code></pre>
+<h2 id="creating-the-users-with-their-relative-passwords">Creating the Users with their relative passwords</h2>
+<p>The default user is the root user. To create other users
+Ora devo creare diversi utenti e una password, altrimenti ci sarà solo 1 utente, ovvero il root
 Per la password root basta passwd senza nessun parametro da linea di comando:
 passwd
 3394
@@ -714,14 +1020,17 @@ visudo
 Tolgo il commento da:</p>
 <pre><code class="language-shell"># %wheel ALL=(ALL) ALL // Da rivedere bene ..
 </code></pre>
-<p>Installo sudo:
-pacman -S sudo
-Installo grub:
-pacman -S grub
-Installo altri pacchetti utili:
-pacman -S efibootmgr dosfstools os-prober mtools</p>
-<p>Mounting the EFI partition: 
-mkdir /boot/EFI
+<h3 id="install-sudo">Install sudo</h3>
+<pre><code class="language-shell">pacman -S sudo
+</code></pre>
+<h3 id="install-grub">Install grub</h3>
+<pre><code class="language-shell">pacman -S grub
+</code></pre>
+<h3 id="installing-other-useful-packages">Installing other useful packages</h3>
+<pre><code class="language-shell">pacman -S efibootmgr dosfstools os-prober mtools
+</code></pre>
+<h3 id="mounting-the-efi-partition">Mounting the EFI partition</h3>
+<p>mkdir /boot/EFI
 mount /dev/sda1 /boot/EFI
 This doesn't work (don't know why):
 grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck</p>
@@ -735,10 +1044,13 @@ This works:
 grub-install --target=x86_64-efi --bootloader-id=GRUB --efi-directory=/boot/EFI --removable
 Creo il file delle configurazioni di grub:
 grub-mkconfig -o /boot/grub/grub.cfg</p>
+<p>Install iwd onto the machine before leaving the live installation process
+https://bbs.archlinux.org/viewtopic.php?id=187798</p>
 <p>Install network manager:
 pacman -S networkmanager vim xorg</p>
 <p>Enable networkmanager with systemd:
-systemctl enable NetworkManager</p>
+systemctl enable NetworkManager
+systemctl enable iwd</p>
 <p>exit the chroot
 exit</p>
 <p>Unmount
@@ -749,50 +1061,23 @@ umount -l /mnt</p>
 vai su storage
 clicca sulla iso
 ed rimuove lo storage e restart</p>
+<p>Linux Drive and Partition Config (dd, fdisk, resize2fs, lsblk, tune2fs and more)
+Sed, Awk, Grep, Cat, gpg, ssh, git, make, zsh</p>
 
-              
-            </article>
-          </div>
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
         </div>
         
       </main>
       
         <footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        
-        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Welcome" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Welcome
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../Docker/" class="md-footer__link md-footer__link--next" aria-label="Next: Docker" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Docker
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -814,10 +1099,11 @@ ed rimuove lo storage e restart</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.6e54b5cd.min.js"></script>
+      <script src="../assets/javascripts/bundle.b4d07000.min.js"></script>
       
     
   </body>
