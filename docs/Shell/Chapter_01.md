@@ -18,3 +18,41 @@ export PATH="$PATH:/home/username/bin"
 Now you can write your scripts in python, shell or other languages, making them executable and add
 the folder where these scripts are located to your $PATH environment variable to use them everywhere while
 browsing your filesystem with the shell
+
+If you have a script that launches a specific application, you can use symlinking and adding to $PATH
+to launch that application from anywhere in your file system
+
+```shell
+ln -s /home/username/programs/java/eclipse/eclipse /home/username/bin
+```
+
+# Chaning resolution of the screen with xrandr
+
+Listing all possible resolution settings
+
+```shell
+xrandr
+```
+
+Listing the names of the active monitors
+
+```shell
+xrandr --listactivemonitors
+```
+
+Give an active monitor named "eDP-1", this sets the resolution at 1024x768
+
+```shell
+xrandr --output eDP-1 --mode 1024x768
+```
+# Getting the size of a directory on the command line
+
+```shell
+du -s, --summarize
+        # display only a total for each argument
+
+du -h, --human-readable
+        # print sizes in human readable format (e.g., 1K 234M 2G)
+
+du -hs
+```

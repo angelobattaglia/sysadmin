@@ -331,7 +331,7 @@ Ora ci sono due strade:
 2) shutdown now se sei in una VM
 vai su storage
 clicca sulla iso
-ed rimuove lo storage e restart
+e rimuove lo storage e restart
 
 Linux Drive and Partition Config (dd, fdisk, resize2fs, lsblk, tune2fs and more)
 Sed, Awk, Grep, Cat, gpg, ssh, git, make, zsh

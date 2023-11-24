@@ -88,7 +88,10 @@ If you want to show all of the graph of commits just type:
     git log --all --graph --decorate (--oneline)
 ``` 
 
-Updating local repository from remote:
+Updating local repository from remote. Let's say your local branch is out of date, and you
+need to fetch changes from the same branch but from remote. In order to do this, we need to fetch
+from remote and then merge our local branch with the remote branch. So a git pull is a shortcut to 
+perform a git fetch followed up by a git merge.
 ``` 
     git pull
 ``` 
