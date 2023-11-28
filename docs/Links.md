@@ -39,6 +39,7 @@ A command-line based approach to computer programming requires:
 - [*THE* Ultimate Book List](https://wiki.installgentoo.com/wiki/Programming_resources#God-tier_books)
 - [Programming Concepts to know](https://wiki.installgentoo.com/wiki/Programming_concepts)
 - [Teach yourself CS](https://teachyourselfcs.com/)
+- [MATLAB examples](https://matrixlab-examples.com)
 - [Diagrams of all sorts (ER, flowchart, UML)](https://app.diagrams.net/)
 - [Minimalist graphics library](https://github.com/C-Chads/tinygl)
 - [Thinkpad wiki](https://www.thinkwiki.org/wiki/ThinkWiki)
@@ -67,6 +68,8 @@ A command-line based approach to computer programming requires:
 - [Markdown tutorial](https://www.markdownguide.org/)
 - [Handwritten formula classification to Latex](https://detexify.kirelabs.org/classify.html)
 - [Math Editor for Latex](https://editor.codecogs.com/)
+- [Latex AMS](https://www.ams.org/arc/resources/amslatex-about.html)
+- [Latex AMS: short guide](https://ctan.mirror.garr.it/mirrors/ctan/info/short-math-guide/)
 
 ### Make
 
@@ -81,6 +84,7 @@ A command-line based approach to computer programming requires:
 
 - [Mercurial short guide](https://mercurial.aragost.com/kick-start/en/basic/#creating-a-repository)
 - [Git learning material](https://git-scm.com/doc)
+- [Interactive Git learning](https://learngitbranching.js.org/)
 - [Progit book](https://git-scm.com/book/en/v2)
 
 ### Competitive Programming
@@ -118,6 +122,7 @@ A command-line based approach to computer programming requires:
 - [Building a Web Browser](https://browser.engineering/)
 - [Physically based rendering book (Computer Graphics)](https://www.pbr-book.org/3ed-2018/Preface)
 - [Emacs](http://ergoemacs.org/index.html)
+- [SQLbolt](https://sqlbolt.com/lesson/select_queries_introduction)
 
 ### Where to find software
 
