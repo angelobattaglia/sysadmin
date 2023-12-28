@@ -108,12 +108,13 @@ To add a remote to a git repository with https:
     git remote add "Remote 2" www.gitlab.com/angelo/progetto
 ``` 
 
-In my case:
+To remove a remote of an already initialized git repository:
 ``` 
-    git remote add origin www.github...
+    git remote remove "Remote 1"
+    git remote remove "Remote 2"
 ``` 
-            
-Push:
+
+Push to remote(s):
 ``` 
     git push "remote name" "branch name"
     git push all
