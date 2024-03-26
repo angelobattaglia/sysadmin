@@ -12,7 +12,7 @@ A command-line based approach to computer programming requires:
 - Make
 - Git
 - The UNIX core utilities
-- [tmux](https://leanpub.com/the-tao-of-tmux), vim, [gdb](https://www.cs.cmu.edu/~gilpin/tutorial/), valgrind
+- tmux, mosh, vim, [gdb](https://www.cs.cmu.edu/~gilpin/tutorial/), valgrind
 
 ## Books used
 

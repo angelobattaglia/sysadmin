@@ -1,3 +1,6 @@
+---
+title: Welcome
+---
 # Welcome
 
 This repository contains all of the fundamentals to learn
