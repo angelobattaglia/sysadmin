@@ -1,10 +1,8 @@
 # Links
 
-## An Opinionated Guide to Programming
+## Tooling
 
-The operating system is our development environment. You can't control GUIs
-programmatically. You can't "script" GUIs. You can't create your own workflow.
-A command-line based approach to computer programming requires:
+The operating system is a development environment.
 
 - Minimal linux-based/FreeBSD/OpenBSD operating system
 - A posix compliant shell (recommended), such as dash. Bash is good as well, albeit not stricly POSIX.

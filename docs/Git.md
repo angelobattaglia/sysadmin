@@ -79,16 +79,7 @@ Push to remote(s):
 #### Branching
 Listing branches:
 
-```shell
-git branch #To see local branches 
-git branch -r #To see  branches 
-git branch -a #To see both local and remote branches 
-``` 
-To change from the current branch, for example, to another one use the argument "checkout":
-```shell
-    git checkout 'branchname'
-``` 
-List all the branches of a given project:
+List all the branches of a given project
 ```shell
     git branch -a
 ``` 
@@ -97,6 +88,11 @@ List all the branches of a given project:
 ``` 
 ```shell
     git branch      # list local branches
+``` 
+
+To change from the current branch, for example, to another one use the argument "checkout":
+```shell
+    git checkout 'branchname'
 ``` 
 
 Local branches: colored white. Remote branches: colored red "remotes/origin"
@@ -134,24 +130,24 @@ If you've merged changes on GitHub and your local repository isn't up to date wi
 1. **Open your terminal or command prompt.**
 
 2. **Navigate to your local repository's directory:**
-   Use the `cd` command to change directories to your local repository if you're not already there.
+Use the `cd` command to change directories to your local repository if you're not already there.
 ```shell
 cd /path/to/your/repository
 ```
 
 3. **Switch to the branch you want to update:**
-   Ensure you're on the correct branch that you wish to update with the changes from GitHub. Typically, this is the main branch or the branch into which you've merged changes on GitHub.
+Ensure you're on the correct branch that you wish to update with the changes from GitHub. Typically, this is the main branch or the branch into which you've merged changes on GitHub.
 ```shell
 git checkout main
 ```
-   Replace `main` with the name of the branch you're updating if it's different.
+Replace `main` with the name of the branch you're updating if it's different.
 
 4. **Pull the changes from GitHub:**
-   Use the `git pull` command to fetch the changes from the remote repository and merge them into your local branch.
+Use the `git pull` command to fetch the changes from the remote repository and merge them into your local branch.
 ```shell
 git pull origin main
 ```
-   This command tells Git to fetch the changes from the `main` branch of the remote repository named `origin` and then merge those changes into your current branch. Again, replace `main` with your branch name if it's different.
+This command tells Git to fetch the changes from the `main` branch of the remote repository named `origin` and then merge those changes into your current branch. Again, replace `main` with your branch name if it's different.
 
 The `git pull` command is essentially a combination of `git fetch` followed by `git merge`, where Git first fetches the changes from the specified remote branch and then merges those changes into the current branch of your local repository. This updates your local repository to reflect the state of the repository on GitHub.
 
