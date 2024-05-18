@@ -1,8 +1,8 @@
 site_name: System Administration
 theme:
   # Setting up the logo and the favicon
-  favicon: images/favicon.png
-  logo: images/logo.png
+  favicon: images/favicon.ico
+  logo: images/sys.png
   # name of the extension material for mkdocs
   name: material
   # features, more on these if you visit the "Contribute" page
