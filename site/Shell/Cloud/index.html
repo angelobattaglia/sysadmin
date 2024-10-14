@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../MLEnv/">
+        <link rel="prev" href="../Arch/">
       
       
-        <link rel="next" href="../Tweaks/">
+        <link rel="next" href="../MLEnv/">
       
       
       <link rel="icon" href="../../images/favicon.ico">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Starting Shell Programming - System Administration</title>
+        <title>Connecting to a GPU cluster: a walkthrough - System Administration</title>
       
     
     
@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#starting-shell-programming" class="md-skip">
+        <a href="#connecting-to-a-gpu-cluster-a-walkthrough" class="md-skip">
           Skip to content
         </a>
       
@@ -105,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Starting Shell Programming
+              Connecting to a GPU cluster: a walkthrough
             
           </span>
         </div>
@@ -656,10 +656,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../Cloud/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Connecting to a GPU cluster: a walkthrough
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -668,6 +688,119 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-key-that-well-use-to-connect-to-the-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      The key that we'll use to connect to the server
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connecting-to-the-remote-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connecting to the remote cluster
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Connecting to the remote cluster">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-happens-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      What happens next?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copying-files-between-local-machine-and-cloud-instance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copying Files Between Local Machine and Cloud Instance:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Copying Files Between Local Machine and Cloud Instance:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#copying-from-remote-to-local" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copying from Remote to Local:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copying-from-local-to-remote" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copying from Local to Remote:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-python-processes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring Python Processes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-a-jupyter-notebook-on-the-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running a Jupyter Notebook on the Cloud:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#terminating-the-instance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Terminating the Instance:
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -698,30 +831,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Starting Shell Programming
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../Starter/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -730,35 +843,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#tools-needed" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tools needed
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -819,9 +903,93 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#tools-needed" class="md-nav__link">
+  <a href="#the-key-that-well-use-to-connect-to-the-server" class="md-nav__link">
     <span class="md-ellipsis">
-      Tools needed
+      The key that we'll use to connect to the server
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connecting-to-the-remote-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connecting to the remote cluster
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Connecting to the remote cluster">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-happens-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      What happens next?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copying-files-between-local-machine-and-cloud-instance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copying Files Between Local Machine and Cloud Instance:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Copying Files Between Local Machine and Cloud Instance:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#copying-from-remote-to-local" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copying from Remote to Local:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copying-from-local-to-remote" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copying from Local to Remote:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-python-processes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring Python Processes:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-a-jupyter-notebook-on-the-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running a Jupyter Notebook on the Cloud:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#terminating-the-instance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Terminating the Instance:
     </span>
   </a>
   
@@ -842,35 +1010,112 @@
                   
 
 
-<h1 id="starting-shell-programming">Starting Shell Programming</h1>
-<p>Learning how to use sed, awk, grep, cat, fdisk and more</p>
-<h3 id="tools-needed">Tools needed</h3>
+<h1 id="connecting-to-a-gpu-cluster-a-walkthrough">Connecting to a GPU cluster: a walkthrough</h1>
+<p>Connecting to a GPU cluster to perform calculation is becoming an everyday task we all have to measure ourselves with.
+It is important to understand how to "ssh into a remote server" to perform computations, and, in the context of Deep Learning,
+we are expected to run the experiments using CUDA or python3, perhaps with the aid of an interface that a jupyter notebook, other
+than the terminal.</p>
+<h2 id="the-key-that-well-use-to-connect-to-the-server">The key that we'll use to connect to the server</h2>
+<p>When we want to connect to a remote supercomputer we are being issued a key. This key is a file with the extension ".pem".
+Let's suppose we download, from the website of the cloud provider, this file onto the ~/Downloads directory. We have the
+following workflow:</p>
+<pre><code class="language-bash">chmod 600 ~/Downloads/test-key-gpu.pem
+</code></pre>
+<p>which does the following:</p>
 <ul>
-<li>Shell: zsh, bash, ash, dash</li>
-<li>Any TUI text editor (Vim, Emacs, Nano ..)</li>
-<li>Any terminal emulator</li>
+<li><strong><code>chmod 600</code></strong>: This changes the file permissions for <code>test-key-gpu.pem</code>. Specifically, it sets the file to be <strong>readable and writable</strong> by the owner (you) and removes all permissions for anyone else. The numeric mode <code>600</code> is broken down as follows:</li>
+<li>The first digit (<code>6</code>) means the owner can <strong>read</strong> and <strong>write</strong> the file (<code>4 + 2 = 6</code>).</li>
+<li>
+<p>The other two digits (<code>0 0</code>) mean that no other users (group or others) have any permissions.</p>
+</li>
+<li>
+<p><strong><code>~/Downloads/test-key-gpu.pem</code></strong>: This is the path to the private SSH key file (used to authenticate your SSH connection) that you've likely downloaded to access the cloud GPU instance. The <code>~</code> represents your home directory, so this file is stored in your <code>Downloads</code> folder.</p>
+</li>
 </ul>
-<h1 id="adding-to-path-any-folder-of-executable-scripts">Adding to $PATH any folder of executable scripts</h1>
-<p>Open your ".zshrc" or ".bashrc". Ideally these two files are located in your ~/ folder.
-To add the folder named "bin" to the $PATH variable, just add the following to your configuration file</p>
-<pre><code class="language-shell">export PATH=&quot;$PATH:/home/username/bin&quot;
+<p>(Optional) You can copy the private key to your <code>.ssh</code> directory with the following command:</p>
+<pre><code class="language-bash">cp ~/Downloads/test-key-gpu.pem ~/.ssh
 </code></pre>
-<p>Now you can write your scripts in python, shell or other languages, making them executable and add
-the folder where these scripts are located to your $PATH environment variable to use them everywhere while
-browsing your filesystem with the shell</p>
-<p>If you have a script that launches a specific application, you can use symlinking and adding to $PATH
-to launch that application from anywhere in your file system</p>
-<pre><code class="language-shell">ln -s /home/username/programs/java/eclipse/eclipse /home/username/bin
+<h2 id="connecting-to-the-remote-cluster">Connecting to the remote cluster</h2>
+<p>The command to do so is: <code>ssh -i ~/Downloads/test-key-gpu.pem ubuntu@96.76.203.50</code></p>
+<ul>
+<li>
+<p><strong><code>-i ~/Downloads/test-key-gpu.pem</code></strong>: This flag specifies the <strong>identity file</strong> (private key) for SSH to use for authentication. In this case, <code>~/Downloads/test-key-gpu.pem</code> is the file path to the private key, stored in your <code>Downloads</code> folder.</p>
+</li>
+<li>
+<p><strong><code>ubuntu@96.76.203.50</code></strong>:</p>
+</li>
+<li><strong><code>ubuntu</code></strong>: The username to log into the remote server. It is common for cloud instances running Ubuntu to default to the <code>ubuntu</code> user.</li>
+<li><strong><code>96.76.203.50</code></strong>: This is the IP address of the remote server (likely your cloud GPU instance).</li>
+</ul>
+<h3 id="what-happens-next">What happens next?</h3>
+<p>This command connects you to the remote cloud GPU instance using SSH, authenticating with the private key specified, and logs you in as the <code>ubuntu</code> user. </p>
+<p>Once connected, the terminal prompt will change, indicating you are now controlling the remote server. At this point, you might want to use <code>tmux</code> (for terminal multiplexing) and <code>nvim</code> (for code editing). For example, you could split your <code>tmux</code> session into three panes—one to monitor GPU usage with <code>nvidia-smi</code>, another for system monitoring with <code>htop</code>, and a third for running Python.</p>
+<h2 id="copying-files-between-local-machine-and-cloud-instance">Copying Files Between Local Machine and Cloud Instance:</h2>
+<h3 id="copying-from-remote-to-local">Copying from Remote to Local:</h3>
+<p>To copy a file (<code>foo.py</code>) from the remote server to your local machine, use:</p>
+<pre><code class="language-bash">scp -i ~/Downloads/test-key-gpu.pem ubuntu@96.76.203.50:~/foo.py .
 </code></pre>
-<h1 id="getting-the-size-of-a-directory-on-the-command-line">Getting the size of a directory on the command line</h1>
-<pre><code class="language-shell">du -s, --summarize
-        # display only a total for each argument
-
-du -h, --human-readable
-        # print sizes in human readable format (e.g., 1K 234M 2G)
-
-du -hs
+<ul>
+<li><strong><code>scp</code></strong>: This command securely transfers files over SSH.</li>
+<li><strong><code>-i ~/Downloads/test-key-gpu.pem</code></strong>: Specifies the identity file (private key) for authentication.</li>
+<li><strong><code>ubuntu@96.76.203.50:~/foo.py</code></strong>: The remote user (<code>ubuntu</code>), the server (<code>96.76.203.50</code>), and the file path (<code>~/foo.py</code>) you want to copy from.</li>
+<li><strong><code>.</code> (dot)</strong>: This specifies the <strong>current directory</strong> on your local machine as the destination.</li>
+</ul>
+<h3 id="copying-from-local-to-remote">Copying from Local to Remote:</h3>
+<p>To upload a file (<code>random.txt</code>) from your local machine to the remote instance:</p>
+<pre><code class="language-bash">scp -i ~/Downloads/test-key-gpu.pem random.txt ubuntu@96.76.203.50:~/
 </code></pre>
+<p>This copies the file <code>random.txt</code> to the home directory of the <code>ubuntu</code> user on the remote instance.</p>
+<h2 id="monitoring-python-processes">Monitoring Python Processes:</h2>
+<p>It is important to monitor python processes in the remote machine.
+To check for running Python processes on the remote server, you can use:</p>
+<pre><code class="language-bash">ps ax | grep python3
+</code></pre>
+<p>This will show any running instances of <code>python3</code>. To terminate a process, use:</p>
+<pre><code class="language-bash">kill -9 &lt;process_id&gt;
+</code></pre>
+<p>Replace <code>&lt;process_id&gt;</code> with the actual ID of the Python process you want to kill.
+Note that <process_id> is discoverable through htop, or some other top-like program.</p>
+<h2 id="running-a-jupyter-notebook-on-the-cloud">Running a Jupyter Notebook on the Cloud:</h2>
+<p>You can set up a Python virtual environment and run a Jupyter Notebook on your cloud GPU instance:</p>
+<ol>
+<li>
+<p>Create a virtual environment:
+   <code>bash
+   python3 -m venv jpr</code></p>
+</li>
+<li>
+<p>Install Jupyter and TensorFlow (or PyTorch):
+   <code>bash
+   pip install jupyter
+   pip install tensorflow-gpu  # For TensorFlow
+   # or
+   pip install torch  # For PyTorch</code></p>
+</li>
+<li>
+<p>If needed, uninstall packages:
+   <code>bash
+   pip uninstall tensorflow-gpu</code></p>
+</li>
+<li>
+<p>Check your CUDA version:
+   <code>bash
+   nvcc --version</code></p>
+</li>
+</ol>
+<p>If your CUDA version is 9.0, you may need to install a specific version of TensorFlow:
+   <code>bash
+   pip install tensorflow-gpu==1.12.0</code></p>
+<ol>
+<li>Run Jupyter Notebook, setting the IP to <code>0.0.0.0</code> so it can be accessed over the network:
+   <code>bash
+   jupyter notebook --ip=0.0.0.0</code></li>
+</ol>
+<h2 id="terminating-the-instance">Terminating the Instance:</h2>
+<p>Terminating a cloud instance will result in a complete loss of all data on the instance. This is typically done through the cloud provider’s web interface. However, you should terminate the active SSH connection from your local machine by simply typing:</p>
+<pre><code class="language-bash">exit
+</code></pre>
+<p>or by closing the terminal.</p>
 
 
 
