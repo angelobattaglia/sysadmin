@@ -51,7 +51,7 @@ The operating system is a development environment.
 - [Shell commands explained](https://explainshell.com/)
 - [Terminals are sexy](https://terminalsare.sexy/)
 - [Various Linux tutorials](http://xahlee.info/linux/linux_common_commands.html)
-- [cheat sheet shell](cht.sh)
+- [cheat sheet shell](https://cht.sh)
 
 ### Practice Regular Expressions
 

@@ -3,7 +3,7 @@
 References:
 
 - [Gentoo AMD 64 handbook](https://wiki.gentoo.org/wiki/Handbook:AMD64)
-- [Archwiki](archwiki.org)
+- [Archwiki](https://archwiki.org)
 
 The best guide to follow is the Archwiki, as it is always up to date. This guide, however, will give more explanations throughout
 the process, by spending more words for each step.
