@@ -62,6 +62,7 @@ The operating system is a development environment.
 ### Latex and Markdown
 
 - [Free latex editor (although worse than the Make and Vi approach)](https://www.xm1math.net/texmaker/)
+- [Latex web editor](https://texviewer.herokuapp.com/)
 - [Latex tutorial](https://en.wikibooks.org/wiki/LaTeX)
 - [Markdown tutorial](https://www.markdownguide.org/)
 - [Handwritten formula classification to Latex](https://detexify.kirelabs.org/classify.html)
