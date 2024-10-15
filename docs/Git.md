@@ -255,7 +255,7 @@ List all the tags:
 ``` 
     git tag
 ``` 
-### Reset and Rebase
+## Reset and Rebase
 
 
 To delete a commit with a typo in the commit message on your GitHub project, you can follow these steps:

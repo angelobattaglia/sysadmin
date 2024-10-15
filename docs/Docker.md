@@ -1,8 +1,7 @@
 # Docker
 
-Docker is a popular open-source platform used for developing, shipping, and running applications. Here's a brief overview of its key concepts:
-
-1. **Containers**: At its core, Docker is about containers. A container is a lightweight, standalone, executable package that includes everything needed to run a piece of software, including the code, runtime, libraries, and system tools. Containers are isolated from each other and the host system, ensuring consistent operation regardless of where the container is deployed.
+Docker is a popular open-source platform used for developing, shipping, and running applications. At its core, Docker is about containers. A container is a lightweight, standalone, executable package that includes everything needed to run a piece of software, including the code, runtime, libraries, and system tools. Containers are isolated from each other and the host system, ensuring consistent operation regardless of where the container is deployed.
+Now, let's see some terminology and concepts that revolve around this "container" thing:
 
 2. **Images**: Containers are created from Docker images. An image is a lightweight, standalone, and executable software package that includes everything needed to run a container: code, runtime, system tools, libraries, and settings. Docker images are built from a Dockerfile, which is a script composed of various commands and arguments that define the image.
 
@@ -20,10 +19,9 @@ Docker is a popular open-source platform used for developing, shipping, and runn
 
 Docker simplifies the deployment of applications, as it allows them to be bundled with all of their dependencies into a single container. This can greatly reduce conflicts between teams running different software on the same infrastructure.
 
+## Minimal docker example: an hello world app in python
 
-Certainly! Let's create a minimal example using Docker. We'll set up a simple Docker environment that runs a basic "Hello, World!" application in Python. This example will illustrate how to create a Dockerfile, build an image, and run a container.
-
-### Step 1: Create the Python Application
+### Create the Python Application
 First, we'll create a simple Python script. Let's name it `app.py`.
 
 ```python
@@ -31,7 +29,7 @@ First, we'll create a simple Python script. Let's name it `app.py`.
 print("Hello, World!")
 ```
 
-### Step 2: Create a Dockerfile
+### Create a Dockerfile
 Next, we'll create a Dockerfile to specify how our Docker image should be built.
 
 ```Dockerfile
@@ -52,7 +50,7 @@ This Dockerfile performs the following steps:
 3. Copy the `app.py` file from your local directory into `/app` in the container.
 4. Set the command to run the Python script when the container starts.
 
-### Step 3: Build the Docker Image
+### Build the Docker Image
 Now, build the Docker image from the Dockerfile. Run this command in the directory containing the Dockerfile and `app.py`.
 
 ```bash
@@ -61,7 +59,7 @@ docker build -t hello-world .
 
 This command builds the Docker image and tags it (`-t`) with the name `hello-world`.
 
-### Step 4: Run the Docker Container
+### Run the Docker Container
 Finally, run a container based on the image you just built:
 
 ```bash
@@ -73,9 +71,9 @@ This command creates and starts a container from the `hello-world` image. You sh
 That's it! This is a minimal example to demonstrate the basic workflow of Docker: writing a simple application, creating a Dockerfile, building an image, and running a container from that image.
 
 
-Certainly! Let's enhance the previous example by including a Python virtual environment and the `numpy` library in our Docker container. This demonstrates a more realistic scenario where you might want to isolate your Python environment and dependencies.
+## Using docker with something like "numpy"
 
-### Step 1: Create the Python Application
+### Create the Python Application
 First, let's modify our `app.py` to use `numpy`.
 
 ```python
@@ -85,7 +83,7 @@ import numpy as np
 print("Hello, World! Here's a random number from NumPy:", np.random.rand())
 ```
 
-### Step 2: Create a Dockerfile
+### Create a Dockerfile
 Now, we'll update our Dockerfile to set up a virtual environment and install `numpy`.
 
 ```Dockerfile
@@ -116,21 +114,21 @@ In this Dockerfile:
 3. We create a Python virtual environment inside the container.
 4. We activate the virtual environment and install `numpy`.
 
-### Step 3: Create a Requirements File
+### Create a Requirements File
 Create a `requirements.txt` file specifying `numpy` and its version.
 
 ```
 numpy==1.21.0
 ```
 
-### Step 4: Build the Docker Image
+### Build the Docker Image
 Build the Docker image using the updated Dockerfile.
 
 ```bash
 docker build -t hello-world-numpy .
 ```
 
-### Step 5: Run the Docker Container
+### Run the Docker Container
 Finally, run the container based on the new image.
 
 ```bash
@@ -142,12 +140,12 @@ This command will output a greeting message along with a random number generated
 This example shows how to include a Python virtual environment and specific dependencies (like `numpy`) in a Docker container, which is a common practice for Python development to ensure consistent and isolated environments.
 
 
-Uploading a Docker image to Docker Hub involves several steps. Here's a step-by-step guide:
+## Uploading a Docker Image to Docker Hub
 
-### Step 1: Create a Docker Hub Account
+### Create a Docker Hub Account
 If you don't already have a Docker Hub account, you'll need to create one. Go to [Docker Hub](https://hub.docker.com/) and sign up for a free account.
 
-### Step 2: Log in to Docker Hub from the Command Line
+### Log in to Docker Hub from the Command Line
 Once you have your Docker Hub account, you need to log in from your command line. Open your terminal and use the following command:
 
 ```bash
@@ -156,7 +154,7 @@ docker login
 
 You'll be prompted to enter your Docker Hub username and password. Once logged in, you can start pushing images to your Docker Hub repository.
 
-### Step 3: Tag Your Docker Image
+### Tag Your Docker Image
 Before you can upload your image to Docker Hub, you need to tag it with your Docker Hub username and the repository name you want to use. The general format for the tag is:
 
 ```bash
@@ -171,7 +169,7 @@ docker tag hello-world-numpy:latest username/hello-world-numpy:latest
 
 This command tags the `hello-world-numpy` image from our previous example.
 
-### Step 4: Push the Image to Docker Hub
+### Push the Image to Docker Hub
 Now, push the tagged image to Docker Hub using the following command:
 
 ```bash
@@ -186,7 +184,7 @@ docker push username/hello-world-numpy:latest
 
 This command uploads the `hello-world-numpy` image to your Docker Hub repository.
 
-### Step 5: Verify the Upload
+### Verify the Upload
 After the push operation completes, go to your Docker Hub account and check your repositories. You should see the `hello-world-numpy` repository listed with the `latest` tag.
 
 ### Note:
