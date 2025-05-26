@@ -1,0 +1,1264 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../MkDocs/">
+      
+      
+        <link rel="next" href="../SysAdmin/Arch/">
+      
+      
+      <link rel="icon" href="../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+    
+    
+      
+        <title>SSH and GPG - System Administration</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ssh-and-gpg" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="System Administration" class="md-header__button md-logo" aria-label="System Administration" data-md-component="logo">
+      
+  <img src="../images/sys.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            System Administration
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              SSH and GPG
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Docker/" class="md-tabs__link">
+        
+  
+    
+  
+  Docker
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Git/" class="md-tabs__link">
+        
+  
+    
+  
+  Git
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Links/" class="md-tabs__link">
+        
+  
+    
+  
+  Links
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../MkDocs/" class="md-tabs__link">
+        
+  
+    
+  
+  MkDocs
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  SSH and GPG
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../SysAdmin/Arch/" class="md-tabs__link">
+          
+  
+    
+  
+  SysAdmin
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="System Administration" class="md-nav__button md-logo" aria-label="System Administration" data-md-component="logo">
+      
+  <img src="../images/sys.png" alt="logo">
+
+    </a>
+    System Administration
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Git/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Links/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Links
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MkDocs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MkDocs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    SSH and GPG
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    SSH and GPG
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSH
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SSH">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key generation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-ssh-keys-for-different-servers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multiple SSH keys for different servers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multiple SSH keys for different servers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#powershell-as-admin" class="md-nav__link">
+    <span class="md-ellipsis">
+      Powershell as Admin
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-ssh-keys-for-all-accounts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create SSH keys for all accounts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#now-generating-ssh-keys-for-my-two-accounts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Now generating SSH keys for my two accounts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-ssh-keys-to-ssh-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add SSH keys to SSH Agent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-ssh-public-key-to-the-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add SSH public key to the Github
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-config-file-and-make-host-entries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a Config File and Make Host Entries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handling-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      Handling Git
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Handling Git">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gpg-gnu-privacy-guard" class="md-nav__link">
+    <span class="md-ellipsis">
+      GPG (GNU privacy guard)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    SysAdmin
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            SysAdmin
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SysAdmin/Arch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arch linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SysAdmin/Cloud/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Connecting to a GPU cluster: a walkthrough
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SysAdmin/Starter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Starting Shell Programming
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SysAdmin/Tools/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SysAdmin/Tweaks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tweaking the System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SysAdmin/bluetooth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bluetooth
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SysAdmin/bootable_usb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bootable usb
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SysAdmin/i3blocks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    i3blocks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SysAdmin/i3wm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setting up i3wm on a Thinkpad computer (perhaps useful for other brands)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSH
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SSH">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key generation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-ssh-keys-for-different-servers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multiple SSH keys for different servers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multiple SSH keys for different servers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#powershell-as-admin" class="md-nav__link">
+    <span class="md-ellipsis">
+      Powershell as Admin
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-ssh-keys-for-all-accounts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create SSH keys for all accounts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#now-generating-ssh-keys-for-my-two-accounts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Now generating SSH keys for my two accounts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-ssh-keys-to-ssh-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add SSH keys to SSH Agent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-ssh-public-key-to-the-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add SSH public key to the Github
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-config-file-and-make-host-entries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a Config File and Make Host Entries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handling-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      Handling Git
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Handling Git">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gpg-gnu-privacy-guard" class="md-nav__link">
+    <span class="md-ellipsis">
+      GPG (GNU privacy guard)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ssh-and-gpg">SSH and GPG</h1>
+<p>SSH is a protocol that used to connect to servers. GPG (gnu privacy guard) is an
+open source implementation of PGP.</p>
+<h2 id="ssh">SSH</h2>
+<h3 id="key-generation">Key generation</h3>
+<p>In order to provide a public key, each user in your system must generate one.
+You should check to make sure you don’t already have a key.
+By default, a user’s SSH keys are stored in that user’s ~/.ssh directory.
+You’re looking for a pair of files named something like
+id_dsa or id_rsa and a matching file with a .pub
+extension. The .pub file is your public key, and the other file is your private key.
+If you don't have these, go to the $HOME dir and:</p>
+<pre><code class="language-sh">cd $HOME/.ssh
+ls
+ssh-keygen
+</code></pre>
+<p>It will ask you for a location with a name. You choose $(HOME)/.ssh/id_rsa. Click return 2 times.</p>
+<pre><code class="language-shell">ls
+id_rsa id_rsa.pub
+</code></pre>
+<p>So: id_rsa -&gt; private key, id_rsa.pub -&gt; public key. Never ever share the private key.
+When on Windows, use git bash. On a UNIX sys do this:</p>
+<pre><code class="language-shell">ssh -T git@github.com
+</code></pre>
+<p>Say yes, and then try to download a repo with SSH. If you have problems:</p>
+<ul>
+<li>
+<p><a href="https://docs.github.com/en/github/authenticating-to-github/testing-your-ssh-connection">Testing your SSH connection</a></p>
+</li>
+<li>
+<p><a href="https://docs.gitlab.com/ee/ssh/">Generating Multiple keys for different remote servers to connect to</a></p>
+</li>
+</ul>
+<h3 id="multiple-ssh-keys-for-different-servers">Multiple SSH keys for different servers</h3>
+<p>You have 3 accounts in 3 hosting services. You need a key for each of those. This Method works
+also for n accounts. This guide is being taylored for Windows-based operating systems.</p>
+<h4 id="powershell-as-admin">Powershell as Admin</h4>
+<p>In Windows PowerShell (run as admin):</p>
+<ul>
+<li>Check the current status of <strong>ssh-agent</strong>:</li>
+</ul>
+<pre><code class="language-shell">   Get-Service | ?{$_.Name -like '*ssh-agent*'} | select -Property Name, StartType, Status
+</code></pre>
+<ul>
+<li>Enable the Service if it is disabled:</li>
+</ul>
+<pre><code class="language-shell">   Set-Service -Name ssh-agent -StartupType Manual
+</code></pre>
+<ul>
+<li>Start the Service:</li>
+</ul>
+<pre><code class="language-shell">   Start-Service ssh-agent
+</code></pre>
+<ul>
+<li>Add your key as before:</li>
+</ul>
+<pre><code class="language-shell">   ssh-add &lt;path to the key&gt;
+</code></pre>
+<h4 id="create-ssh-keys-for-all-accounts">Create SSH keys for all accounts</h4>
+<p>First make sure your current directory is your <strong>.ssh</strong> folder.</p>
+<pre><code class="language-sh">    cd ~/.ssh
+</code></pre>
+<p>Syntax for generating unique ssh key for ann account is:</p>
+<pre><code class="language-sh">     ssh-keygen -t rsa -C &quot;your-email-address&quot; -f &quot;github-username&quot;
+</code></pre>
+<p>here,</p>
+<p><strong>-C</strong> stands for comment to help identify your ssh key</p>
+<p><strong>-f</strong> stands for the file name where your ssh key get saved</p>
+<h4 id="now-generating-ssh-keys-for-my-two-accounts">Now generating SSH keys for my two accounts</h4>
+<pre><code class="language-sh">     ssh-keygen -t rsa -C &quot;first_email@gmail.com&quot; -f &quot;github-first-account&quot;
+     ssh-keygen -t rsa -C &quot;second_email@gmail.com&quot; -f &quot;github-second-personal&quot;
+</code></pre>
+<p>Notice here <strong>first-account</strong> and <strong>second-account</strong> are the username of my github accounts corresponding to <strong>first-account<span></span>@gmail.com</strong> and <strong>second-account<span></span>@gmail.com</strong> email ids respectively.</p>
+<p>After entering the command the terminal will ask for passphrase, leave it empty and proceed.</p>
+<h4 id="add-ssh-keys-to-ssh-agent">Add SSH keys to SSH Agent</h4>
+<p>Now we have the keys but it cannot be used until we add them to the SSH Agent. Note:
+the "-k" flag is lowercase on Windows and uppercase on UNIX shells (As it worked for me).</p>
+<pre><code class="language-shell">     ssh-add -k ~/.ssh/github-first-account
+     ssh-add -k ~/.ssh/github-second-account
+</code></pre>
+<p>You can read more about adding keys to SSH Agent <a href="https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">here.</a></p>
+<h4 id="add-ssh-public-key-to-the-github">Add SSH public key to the Github</h4>
+<p>For the next step we need to add our public key (that we have generated in our previous step) and add it to corresponding github accounts.</p>
+<p>For doing this we need to:</p>
+<ul>
+<li>Copy the public key to the clipboard</li>
+</ul>
+<p>We can copy the public key by opening the github-rahul-office.pub file in nvim and then copying the content of it.</p>
+<pre><code class="language-sh">     nvim ~/.ssh/github-first-account.pub
+     nvim ~/.ssh/github-second-account.pub
+</code></pre>
+<p>And then, paste the public key on Github.</p>
+<ol>
+<li>
+<p>Sign in to Github Account</p>
+</li>
+<li>
+<p>Go to <strong>Settings</strong> &gt; <strong>SSH and GPG keys</strong> &gt; <strong>New SSH Key</strong></p>
+</li>
+<li>
+<p>Paste your copied public key and give it a Title of your choice.</p>
+</li>
+</ol>
+<h4 id="create-a-config-file-and-make-host-entries">Create a Config File and Make Host Entries</h4>
+<p>The <strong>~/.ssh/config</strong> file allows us specify many config options for SSH.</p>
+<p>If <strong>config</strong> file not already exists then create one (make sure you are in <strong>~/.ssh</strong> directory)</p>
+<pre><code class="language-sh">     touch config
+</code></pre>
+<p>The commands below opens config in your default editor....Likely TextEdit, VS Code.</p>
+<pre><code class="language-shell">     open config
+</code></pre>
+<p>Now we need to add these lines to the file, each block corresponding to each account we created earlier.</p>
+<pre><code class="language-config">     #first-account
+     Host github.com-first-account
+          HostName github.com
+          User git
+          IdentityFile ~/.ssh/github-first-account
+
+     #second-account
+     Host github.com-second-account
+          HostName github.com
+          User git
+          IdentityFile ~/.ssh/github-second-account
+</code></pre>
+<h4 id="handling-git">Handling Git</h4>
+<p>From now on, to ensure that our commits and pushes from each repository on the system uses the correct GitHub user — we will have to configure <strong>user.email</strong> and <strong>user.name</strong> in every repository freshly cloned or existing before.</p>
+<p>To do this use the following commands.</p>
+<pre><code class="language-git">     git config user.email &quot;first-account@gmail.com&quot;
+     git config user.name &quot;first-account Name&quot;
+
+     git config user.email &quot;second-account@gmail.com&quot;
+     git config user.name &quot;second-account Name&quot;
+</code></pre>
+<p>Pick the correct pair for your repository accordingly.</p>
+<p>To push or pull to the correct account we need to add the remote origin to the project</p>
+<pre><code class="language-git">     git remote add origin git@github.com-first-account:first-account
+
+     git remote add origin git@github.com-second-account:second-account
+</code></pre>
+<p>Now you can use:</p>
+<pre><code class="language-git">     git push
+
+     git pull
+</code></pre>
+<h5 id="references">References</h5>
+<ul>
+<li><a href="https://gist.github.com/rahularity/86da20fe3858e6b311de068201d279e3">(1)</a></li>
+<li><a href="https://unix.stackexchange.com/questions/464574/ssh-add-returns-with-error-connecting-to-agent-no-such-file-or-directory/475853#475853">(2)</a></li>
+<li><a href="https://robotmoon.com/ssh-tunnels/">(3) [SSH tunnels]</a></li>
+</ul>
+<h2 id="gpg-gnu-privacy-guard">GPG (GNU privacy guard)</h2>
+<p>First off, we need to generate a key pair. A key pair is composed by a private key and a
+public key.</p>
+<pre><code class="language-shell">gpg --full-gen-key
+</code></pre>
+<p>It will generate a file, usually, in the $(HOME)/.gnupg directory.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.sections", "navigation.path"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

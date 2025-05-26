@@ -1,0 +1,2032 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Docker/">
+      
+      
+        <link rel="next" href="../Links/">
+      
+      
+      <link rel="icon" href="../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+    
+    
+      
+        <title>Git - System Administration</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#git" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="System Administration" class="md-header__button md-logo" aria-label="System Administration" data-md-component="logo">
+      
+  <img src="../images/sys.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            System Administration
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Git
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Docker/" class="md-tabs__link">
+        
+  
+    
+  
+  Docker
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  Git
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Links/" class="md-tabs__link">
+        
+  
+    
+  
+  Links
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../MkDocs/" class="md-tabs__link">
+        
+  
+    
+  
+  MkDocs
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../SSH_GPG/" class="md-tabs__link">
+        
+  
+    
+  
+  SSH and GPG
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../SysAdmin/Arch/" class="md-tabs__link">
+          
+  
+    
+  
+  SysAdmin
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="System Administration" class="md-nav__button md-logo" aria-label="System Administration" data-md-component="logo">
+      
+  <img src="../images/sys.png" alt="logo">
+
+    </a>
+    System Administration
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Git
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Git
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#git-basic-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      git basic configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-starter" class="md-nav__link">
+    <span class="md-ellipsis">
+      git starter
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="git starter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#working-with-remote" class="md-nav__link">
+    <span class="md-ellipsis">
+      Working with Remote
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#branching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Branching
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-checkout-moving-between-branches-in-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      Git Checkout (moving between branches in git)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contributing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contributing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Contributing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-fork-the-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Fork the Repository
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-clone-your-forked-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Clone Your Forked Repository
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Clone Your Forked Repository">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-remote-repositories" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Remote Repositories
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-the-remote-to-your-fork" class="md-nav__link">
+    <span class="md-ellipsis">
+      Change the Remote to Your Fork
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-create-a-new-branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Create a New Branch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-make-your-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Make Your Changes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-push-to-your-fork" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 5: Push to Your Fork
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-create-a-pull-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 6: Create a Pull Request
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-keep-your-fork-updated" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optional: Keep Your Fork Updated
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Optional: Keep Your Fork Updated">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#then-again" class="md-nav__link">
+    <span class="md-ellipsis">
+      Then again:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-merge" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to merge
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How to merge">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#merging-in-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      Merging in GitHub
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Merging in GitHub">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#updating-your-local-repository-after-merging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Updating Your Local Repository After Merging
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#after-merging" class="md-nav__link">
+    <span class="md-ellipsis">
+      After Merging
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="After Merging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-update-your-local-repository-after-merges-made-on-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to update your local repository after merges made on GitHub
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-make-a-pull-request-on-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to make a pull request on GitHub
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tagging-a-particular-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tagging a particular commit
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reset-and-rebase" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reset and Rebase
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reset and Rebase">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-identify-the-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Identify the Commit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-revert-to-the-previous-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Revert to the Previous Commit
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Revert to the Previous Commit">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#if-the-mistaken-commit-is-the-latest" class="md-nav__link">
+    <span class="md-ellipsis">
+      If the mistaken commit is the latest:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-interactive-rebase-if-the-commit-is-not-the-latest" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Interactive Rebase (if the commit is not the latest)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-verify" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Verify
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interactive-rebase" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interactive Rebase
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitoring-the-latest-change-made-to-a-git-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring the latest change made to a Git repository
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Output:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if-you-want-just-a-one-liner-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      If you want just a one-liner summary:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#to-see-which-files-were-changed-in-that-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      To see which files were changed in that commit:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Links/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Links
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MkDocs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MkDocs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SSH_GPG/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SSH and GPG
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    SysAdmin
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            SysAdmin
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SysAdmin/Arch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arch linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SysAdmin/Cloud/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Connecting to a GPU cluster: a walkthrough
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SysAdmin/Starter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Starting Shell Programming
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SysAdmin/Tools/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SysAdmin/Tweaks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tweaking the System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SysAdmin/bluetooth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bluetooth
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SysAdmin/bootable_usb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bootable usb
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SysAdmin/i3blocks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    i3blocks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SysAdmin/i3wm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setting up i3wm on a Thinkpad computer (perhaps useful for other brands)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#git-basic-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      git basic configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-starter" class="md-nav__link">
+    <span class="md-ellipsis">
+      git starter
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="git starter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#working-with-remote" class="md-nav__link">
+    <span class="md-ellipsis">
+      Working with Remote
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#branching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Branching
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-checkout-moving-between-branches-in-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      Git Checkout (moving between branches in git)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contributing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contributing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Contributing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-fork-the-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Fork the Repository
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-clone-your-forked-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Clone Your Forked Repository
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Clone Your Forked Repository">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-remote-repositories" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Remote Repositories
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-the-remote-to-your-fork" class="md-nav__link">
+    <span class="md-ellipsis">
+      Change the Remote to Your Fork
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-create-a-new-branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Create a New Branch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-make-your-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Make Your Changes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-push-to-your-fork" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 5: Push to Your Fork
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-create-a-pull-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 6: Create a Pull Request
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-keep-your-fork-updated" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optional: Keep Your Fork Updated
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Optional: Keep Your Fork Updated">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#then-again" class="md-nav__link">
+    <span class="md-ellipsis">
+      Then again:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-merge" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to merge
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How to merge">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#merging-in-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      Merging in GitHub
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Merging in GitHub">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#updating-your-local-repository-after-merging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Updating Your Local Repository After Merging
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#after-merging" class="md-nav__link">
+    <span class="md-ellipsis">
+      After Merging
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="After Merging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-update-your-local-repository-after-merges-made-on-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to update your local repository after merges made on GitHub
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-make-a-pull-request-on-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to make a pull request on GitHub
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tagging-a-particular-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tagging a particular commit
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reset-and-rebase" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reset and Rebase
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reset and Rebase">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-identify-the-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Identify the Commit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-revert-to-the-previous-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Revert to the Previous Commit
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Revert to the Previous Commit">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#if-the-mistaken-commit-is-the-latest" class="md-nav__link">
+    <span class="md-ellipsis">
+      If the mistaken commit is the latest:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-interactive-rebase-if-the-commit-is-not-the-latest" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Interactive Rebase (if the commit is not the latest)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-verify" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Verify
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interactive-rebase" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interactive Rebase
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitoring-the-latest-change-made-to-a-git-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring the latest change made to a Git repository
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Output:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if-you-want-just-a-one-liner-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      If you want just a one-liner summary:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#to-see-which-files-were-changed-in-that-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      To see which files were changed in that commit:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="git">Git</h1>
+<pre><code>to add : https://stackoverflow.com/questions/37937984/git-refusing-to-merge-unrelated-histories-on-rebase
+TODOs: Git worktree, git bare repository, git submodules
+</code></pre>
+<h3 id="git-basic-configuration">git basic configuration</h3>
+<p>When you install git for the first time on the new machine. Set the default command line editor as vim.</p>
+<pre><code class="language-shell">    git config --global core.editor nvim
+    git config --global user.name &quot;John Doe&quot;
+    git config --global user.email &quot;john@doe.net&quot;
+    git config --global color.ui &quot;auto&quot;
+</code></pre>
+<p>To list all of the configs:</p>
+<pre><code class="language-shell">    git config --list
+</code></pre>
+<h3 id="git-starter">git starter</h3>
+<p>To start a new git project on github:</p>
+<pre><code class="language-shell">    git init
+    git add .gitignore # for the files you don't want to commit
+    git remote add 'name of the remote' www.github.com/angelobattaglia/progetto
+    git remote set-url 'name of the remote' git@github.com:angelobattaglia/progetto.git
+    git add -A or git add .
+    git commit -a (-m &quot;first commit&quot;)
+    git push 'name of the remote' master
+</code></pre>
+<p>If you want remove some file that you added to the .gitignore later:</p>
+<pre><code class="language-shell">    git rm --cached filetoremovefromthecache
+</code></pre>
+<p>If you want to show all of the graph of commits just type:</p>
+<pre><code class="language-shell">    git log --all --graph --decorate (--oneline)
+</code></pre>
+<p>Updating local repository from remote. Let's say your local branch is out of date, and you
+need to fetch changes from the same branch but from remote. In order to do this, we need to fetch
+from remote and then merge our local branch with the remote branch. So a git pull is a shortcut to 
+perform a git fetch followed up by a git merge.</p>
+<pre><code class="language-shell">    git pull
+</code></pre>
+<h4 id="working-with-remote">Working with Remote</h4>
+<p>To see how many remote for a git repository:</p>
+<pre><code class="language-shell">    git remote -v
+</code></pre>
+<p>To add a remote to a git repository with https:</p>
+<pre><code class="language-shell">    git remote add &quot;Remote 1&quot; www.github.com/angelo/progetto
+    git remote add &quot;Remote 2&quot; www.gitlab.com/angelo/progetto
+</code></pre>
+<p>To remove a remote of an already initialized git repository:</p>
+<pre><code class="language-shell">    git remote remove &quot;Remote 1&quot;
+    git remote remove &quot;Remote 2&quot;
+</code></pre>
+<p>Push to remote(s):</p>
+<pre><code class="language-shell">    git push &quot;remote name&quot; &quot;branch name&quot;
+    git push all
+</code></pre>
+<h4 id="branching">Branching</h4>
+<p>Listing branches:</p>
+<p>List all the branches of a given project</p>
+<pre><code class="language-shell">    git branch -a
+</code></pre>
+<pre><code class="language-shell">    git branch -r   # list remote branches
+</code></pre>
+<pre><code class="language-shell">    git branch      # list local branches
+</code></pre>
+<p>To change from the current branch, for example, to another one use the argument "checkout":</p>
+<pre><code class="language-shell">    git checkout 'branchname'
+</code></pre>
+<p>Local branches: colored white. Remote branches: colored red "remotes/origin"
+If you want to abort all current changes that aren't committed:</p>
+<pre><code class="language-shell">    git reset --hard
+</code></pre>
+<p>If you just want to restore one file:</p>
+<pre><code class="language-shell">    git checkout filetorestore.txt
+</code></pre>
+<p>Branch pointed as "HEAD" is the latest committed among all the branches</p>
+<h4 id="git-checkout-moving-between-branches-in-git">Git Checkout (moving between branches in git)</h4>
+<p>The easiest way to switch branch on Git is to use the “git checkout”
+command and specify the name of the branch you want to switch to. 
+If the destination branch does not exist, you have to append the “-b” option, 
+otherwise you won’t be able to switch to that branch.</p>
+<pre><code class="language-shell">git checkout &lt;existing_branch&gt;
+</code></pre>
+<h2 id="contributing">Contributing</h2>
+<p>Here's how you can modify the repo and send a pull request:</p>
+<h3 id="step-1-fork-the-repository"><strong>Step 1: Fork the Repository</strong></h3>
+<p>Before making any changes, you need to fork the repository so that you can push your changes to your own version of the repo.
+1. Go to the repo: <strong><a href="https://github.com/">username/repo</a></strong>
+2. Click the <strong>"Fork"</strong> button on the top-right.
+3. This will create a copy of the repo in your own GitHub account.</p>
+<hr />
+<h3 id="step-2-clone-your-forked-repository"><strong>Step 2: Clone Your Forked Repository</strong></h3>
+<p>Since you've already cloned the original repo to your desktop, you'll need to switch to your own fork.</p>
+<h4 id="check-remote-repositories"><strong>Check Remote Repositories</strong></h4>
+<p>Run:</p>
+<pre><code class="language-bash">git remote -v
+</code></pre>
+<p>It will show:</p>
+<pre><code>origin  https://github.com/username/repo.git (fetch)
+origin  https://github.com/username/repo.git (push)
+</code></pre>
+<p>Since you don’t have push access to the original repo, you need to change it to your own fork.</p>
+<h4 id="change-the-remote-to-your-fork"><strong>Change the Remote to Your Fork</strong></h4>
+<p>Replace <code>your-username</code> with your GitHub username:</p>
+<pre><code class="language-bash">git remote set-url origin https://github.com/your-username/algo.git
+</code></pre>
+<p>Now, verify the remote again:</p>
+<pre><code class="language-bash">git remote -v
+</code></pre>
+<p>It should show:</p>
+<pre><code>origin  https://github.com/your-username/algo.git (fetch)
+origin  https://github.com/your-username/algo.git (push)
+</code></pre>
+<hr />
+<h3 id="step-3-create-a-new-branch"><strong>Step 3: Create a New Branch</strong></h3>
+<p>It's best practice to work in a new branch rather than <code>main</code> or <code>master</code>.</p>
+<pre><code class="language-bash">git checkout -b my-feature
+</code></pre>
+<p>Replace <code>my-feature</code> with a meaningful branch name.</p>
+<hr />
+<h3 id="step-4-make-your-changes"><strong>Step 4: Make Your Changes</strong></h3>
+<p>Modify the code as needed, then stage the changes:</p>
+<pre><code class="language-bash">git add .
+</code></pre>
+<p>Commit the changes:</p>
+<pre><code class="language-bash">git commit -m &quot;Added new feature XYZ&quot;
+</code></pre>
+<hr />
+<h3 id="step-5-push-to-your-fork"><strong>Step 5: Push to Your Fork</strong></h3>
+<p>Push your branch to <strong>your forked repository</strong>:</p>
+<pre><code class="language-bash">git push origin my-feature
+</code></pre>
+<hr />
+<h3 id="step-6-create-a-pull-request"><strong>Step 6: Create a Pull Request</strong></h3>
+<ol>
+<li>Go to <strong>your fork</strong> of the repository on GitHub.</li>
+<li>You'll see a prompt like "Compare &amp; pull request"—click it.</li>
+<li>Add a title and description for your changes.</li>
+<li>Click <strong>Create pull request</strong>.</li>
+</ol>
+<p>Now, the original repository owner can review and merge your changes.</p>
+<hr />
+<h3 id="optional-keep-your-fork-updated"><strong>Optional: Keep Your Fork Updated</strong></h3>
+<p>If the original repo gets updates, you should sync your fork to avoid conflicts:</p>
+<pre><code class="language-bash">git remote add upstream https://github.com/username/repo.git
+git fetch upstream
+git merge upstream/main
+git push origin main
+</code></pre>
+<h5 id="then-again">Then again:</h5>
+<p>You can list all your local branches and see which one you're currently on by using the following command:</p>
+<pre><code class="language-bash">git branch
+</code></pre>
+<p>This command will display all local branches, with the branch you're on marked by an asterisk (<code>*</code>). If you also want to see the remote branches, you can use:</p>
+<pre><code class="language-bash">git branch -a
+</code></pre>
+<p>Additionally, running <code>git status</code> in your terminal will show you the current branch at the top of the status message.</p>
+<h4 id="how-to-merge">How to merge</h4>
+<p>Merging in Git, especially when working with GitHub, is a common task that integrates changes from one branch into another. Here's a comprehensive guide on how to merge changes using Git with GitHub, and subsequently update your local repository to reflect these changes.</p>
+<h5 id="merging-in-github">Merging in GitHub</h5>
+<ol>
+<li>
+<p><strong>Open a Pull Request (PR):</strong> A Pull Request in GitHub is essentially a request to merge one branch into another. Navigate to the repository where you're contributing, and click on "Pull Requests" &gt; "New pull request". Choose the base branch that you want to merge into and the compare branch that you want to merge from.</p>
+</li>
+<li>
+<p><strong>Review the Changes:</strong> Before merging, it's a good practice to review the changes. GitHub provides a diff view that shows the added, modified, or removed lines.</p>
+</li>
+<li>
+<p><strong>Resolve Conflicts (if any):</strong> If there are any conflicts, GitHub will alert you. You must resolve these conflicts before proceeding. This can often be done directly in the GitHub interface or by checking out the branch locally and resolving the conflicts manually.</p>
+</li>
+<li>
+<p><strong>Merge the Pull Request:</strong> Once any conflicts are resolved and you're ready to integrate the changes, click the "Merge pull request" button. Optionally, you can add a merge commit message to document the merge.</p>
+</li>
+</ol>
+<h6 id="updating-your-local-repository-after-merging">Updating Your Local Repository After Merging</h6>
+<p>After merging changes on GitHub, you'll want to update your local repository to reflect the merged state of the remote repository.</p>
+<ol>
+<li>
+<p><strong>Switch to the Relevant Branch:</strong> Make sure you're on the branch into which you merged the changes. You can switch branches with the <code>git checkout</code> command.
+   <code>bash
+   git checkout main</code>
+   Replace <code>main</code> with the name of the branch you merged the changes into.</p>
+</li>
+<li>
+<p><strong>Fetch the Latest Changes:</strong> Fetch the changes from the remote repository without merging them into your local repository.
+   <code>bash
+   git fetch origin</code>
+   <code>origin</code> is the default name for the remote repository. If you've named it differently, replace <code>origin</code> with the name you've given.</p>
+</li>
+<li>
+<p><strong>Merge the Changes:</strong> Now, merge the fetched changes into your local branch.
+   <code>bash
+   git merge origin/main</code>
+   Replace <code>main</code> with the name of your branch. This command merges the remote changes into your current branch, synchronizing it with the remote repository.</p>
+</li>
+<li>
+<p><strong>Push Local Changes (if any):</strong> If you've made any local changes that need to be synchronized with the remote repository, push them using:
+   <code>bash
+   git push origin main</code>
+   Again, replace <code>main</code> with the appropriate branch name.</p>
+</li>
+</ol>
+<h6 id="best-practices">Best Practices</h6>
+<ul>
+<li><strong>Regularly Pull Changes:</strong> To minimize merge conflicts, regularly pull changes from the remote repository to your local branches, especially before starting new work.</li>
+<li><strong>Use Feature Branches:</strong> When working on new features or fixes, create separate branches for each task. This makes managing and merging changes easier.</li>
+<li><strong>Communicate with Your Team:</strong> If you're working in a team, communicate about branch merges to avoid conflicts and duplicative work.</li>
+</ul>
+<p>Merging and updating your repository in Git can initially seem complex, but with practice, it becomes a routine part of managing code changes. By following these steps and best practices, you'll ensure that your project remains current and organized.</p>
+<h3 id="after-merging">After Merging</h3>
+<p>If you've merged changes on GitHub and your local repository isn't up to date with those changes, you can update your local repository by pulling the changes from GitHub. This process involves fetching the changes made on the remote and merging them into your local branch. Here's how you can do it:</p>
+<ol>
+<li>
+<p><strong>Open your terminal or command prompt.</strong></p>
+</li>
+<li>
+<p><strong>Navigate to your local repository's directory:</strong>
+   Use the <code>cd</code> command to change directories to your local repository if you're not already there.
+   <code>bash
+   cd /path/to/your/repository</code></p>
+</li>
+<li>
+<p><strong>Switch to the branch you want to update:</strong>
+   Ensure you're on the correct branch that you wish to update with the changes from GitHub. Typically, this is the main branch or the branch into which you've merged changes on GitHub.
+   <code>bash
+   git checkout main</code>
+   Replace <code>main</code> with the name of the branch you're updating if it's different.</p>
+</li>
+<li>
+<p><strong>Pull the changes from GitHub:</strong>
+   Use the <code>git pull</code> command to fetch the changes from the remote repository and merge them into your local branch.
+   <code>bash
+   git pull origin main</code>
+   This command tells Git to fetch the changes from the <code>main</code> branch of the remote repository named <code>origin</code> and then merge those changes into your current branch. Again, replace <code>main</code> with your branch name if it's different.</p>
+</li>
+</ol>
+<p>The <code>git pull</code> command is essentially a combination of <code>git fetch</code> followed by <code>git merge</code>, where Git first fetches the changes from the specified remote branch and then merges those changes into the current branch of your local repository. This updates your local repository to reflect the state of the repository on GitHub.</p>
+<p>If you encounter any merge conflicts during this process, Git will alert you and ask you to resolve them. You'll need to manually edit the files with conflicts, choose which changes to keep, and then commit those resolutions before proceeding.</p>
+<p>Following these steps ensures that your local repository is synchronized with the changes made on GitHub, keeping your project files up to date.</p>
+<p>You can merge one or more branches. In the current branch, run:</p>
+<pre><code class="language-shell">    git merge &quot;branch-one&quot;
+    git merge &quot;branch-one&quot; &quot;branch-two&quot;
+</code></pre>
+<h6 id="how-to-update-your-local-repository-after-merges-made-on-github">How to update your local repository after merges made on GitHub</h6>
+<p>If you've merged changes on GitHub and your local repository isn't up to date with those changes, you can update your local repository by pulling the changes from GitHub. This process involves fetching the changes made on the remote and merging them into your local branch. Here's how you can do it:</p>
+<ol>
+<li>
+<p><strong>Open your terminal or command prompt.</strong></p>
+</li>
+<li>
+<p><strong>Navigate to your local repository's directory:</strong>
+Use the <code>cd</code> command to change directories to your local repository if you're not already there.</p>
+</li>
+</ol>
+<pre><code class="language-shell">cd /path/to/your/repository
+</code></pre>
+<ol>
+<li><strong>Switch to the branch you want to update:</strong>
+Ensure you're on the correct branch that you wish to update with the changes from GitHub. Typically, this is the main branch or the branch into which you've merged changes on GitHub.</li>
+</ol>
+<pre><code class="language-shell">git checkout main
+</code></pre>
+<p>Replace <code>main</code> with the name of the branch you're updating if it's different.</p>
+<ol>
+<li><strong>Pull the changes from GitHub:</strong>
+Use the <code>git pull</code> command to fetch the changes from the remote repository and merge them into your local branch.</li>
+</ol>
+<pre><code class="language-shell">git pull origin main
+</code></pre>
+<p>This command tells Git to fetch the changes from the <code>main</code> branch of the remote repository named <code>origin</code> and then merge those changes into your current branch. Again, replace <code>main</code> with your branch name if it's different.</p>
+<p>The <code>git pull</code> command is essentially a combination of <code>git fetch</code> followed by <code>git merge</code>, where Git first fetches the changes from the specified remote branch and then merges those changes into the current branch of your local repository. This updates your local repository to reflect the state of the repository on GitHub.</p>
+<p>If you encounter any merge conflicts during this process, Git will alert you and ask you to resolve them. You'll need to manually edit the files with conflicts, choose which changes to keep, and then commit those resolutions before proceeding.</p>
+<p>Following these steps ensures that your local repository is synchronized with the changes made on GitHub, keeping your project files up to date.</p>
+<h4 id="how-to-make-a-pull-request-on-github">How to make a pull request on GitHub</h4>
+<ul>
+<li>Find a project you want to contribute to</li>
+<li>Fork it</li>
+<li>Clone it to your local system</li>
+<li>Create a new branch</li>
+<li>Write your changes</li>
+<li>Push it back to your repo</li>
+<li>Click the Compare &amp; pull request button</li>
+<li>Click Create pull request to open a new pull request</li>
+</ul>
+<h4 id="tagging-a-particular-commit">Tagging a particular commit</h4>
+<pre><code>    git tag &quot;tag name&quot; # Will tag the commit HEAD (the latest) if not specified otherwise
+    git tag &quot;hash of the commit&quot; &quot;tag name&quot; # Will tag the specific commit tagged with that hash
+</code></pre>
+<p>List all the tags:</p>
+<pre><code>    git tag
+</code></pre>
+<h2 id="reset-and-rebase">Reset and Rebase</h2>
+<p>To delete a commit with a typo in the commit message on your GitHub project, you can follow these steps:</p>
+<h3 id="step-1-identify-the-commit">Step 1: Identify the Commit</h3>
+<p>First, determine the hash (SHA-1) of the commit you want to delete. You can use <code>git log</code> to see the commit history and identify the offending commit.</p>
+<pre><code class="language-bash">git log
+</code></pre>
+<h3 id="step-2-revert-to-the-previous-commit">Step 2: Revert to the Previous Commit</h3>
+<p>If the mistaken commit is the latest one, you can reset your branch to the previous commit. If it's not the latest commit, you can use an interactive rebase to modify your commit history.</p>
+<h4 id="if-the-mistaken-commit-is-the-latest">If the mistaken commit is the latest:</h4>
+<ol>
+<li>Use <code>git reset</code> to revert to the previous commit:</li>
+</ol>
+<pre><code class="language-bash">git reset --hard HEAD~1
+</code></pre>
+<ol>
+<li>Force-push the changes to your remote repository:</li>
+</ol>
+<pre><code class="language-bash">git push origin +HEAD
+</code></pre>
+<h3 id="step-3-interactive-rebase-if-the-commit-is-not-the-latest">Step 3: Interactive Rebase (if the commit is not the latest)</h3>
+<p>If the commit is not the latest one, you can use an interactive rebase to remove or edit the commit.</p>
+<ol>
+<li>Start an interactive rebase from a point before the mistaken commit:</li>
+</ol>
+<pre><code class="language-bash">git rebase -i HEAD~n
+</code></pre>
+<p>Replace <code>n</code> with the number of commits back you want to rebase, which should include the mistaken commit.</p>
+<ol>
+<li>
+<p>In the interactive rebase editor, you will see a list of commits. Find the line with the mistaken commit message. You can either remove that line to delete the commit or change the word <code>pick</code> to <code>edit</code> to modify the commit.</p>
+</li>
+<li>
+<p>If you chose to edit the commit, after closing the editor, you can change the commit message:</p>
+</li>
+</ol>
+<pre><code class="language-bash">git commit --amend
+</code></pre>
+<ol>
+<li>Continue the rebase process:</li>
+</ol>
+<pre><code class="language-bash">git rebase --continue
+</code></pre>
+<ol>
+<li>Finally, force-push the changes to your remote repository:</li>
+</ol>
+<pre><code class="language-bash">git push origin +HEAD
+</code></pre>
+<h3 id="step-4-verify">Step 4: Verify</h3>
+<p>Ensure your repository's commit history looks correct:</p>
+<pre><code class="language-bash">git log
+</code></pre>
+<p>This should remove the commit with the typo from your project's history on GitHub. Remember, force-pushing changes the commit history and can affect other collaborators' work, so proceed with caution and communicate with your team if necessary.</p>
+<h3 id="interactive-rebase">Interactive Rebase</h3>
+<p>This step involves using interactive rebase to modify your commit history, which is particularly useful if the mistaken commit is not the latest one.</p>
+<ol>
+<li><strong>Start Interactive Rebase:</strong></li>
+</ol>
+<p>Begin by starting an interactive rebase from a point before the mistaken commit. You need to specify the number of commits back you want to rebase. For example, if you need to go back 3 commits:</p>
+<p><code>bash
+   git rebase -i HEAD~3</code></p>
+<p>This will open an editor with a list of the last 3 commits.</p>
+<ol>
+<li><strong>Modify the Commit List:</strong></li>
+</ol>
+<p>In the interactive rebase editor, you'll see a list of commits, each preceded by the word <code>pick</code>. It will look something like this:</p>
+<p><code>pick a1b2c3d Commit message before the mistake
+   pick b2c3d4e Mistaken commit explaination
+   pick c3d4e5f Commit message after the mistake</code></p>
+<p>Find the line with the mistaken commit message. You have two main options here:</p>
+<ul>
+<li>
+<p><strong>Remove the Commit (if you want to delete it):</strong> Simply delete the line with the mistaken commit.</p>
+</li>
+<li>
+<p><strong>Edit the Commit Message (if you want to correct it):</strong> Change the word <code>pick</code> to <code>edit</code> on the line with the mistaken commit:</p>
+<p><code>pick a1b2c3d Commit message before the mistake
+edit b2c3d4e Mistaken commit explaination
+pick c3d4e5f Commit message after the mistake</code></p>
+</li>
+<li>
+<p><strong>Save and Exit the Editor:</strong></p>
+</li>
+</ul>
+<p>Save the changes and exit the editor. The rebase process will pause at the commit you marked for editing.</p>
+<ol>
+<li><strong>Edit the Commit:</strong></li>
+</ol>
+<p>If you chose to edit the commit, you'll now be prompted to amend the commit. Change the commit message:</p>
+<p><code>bash
+   git commit --amend</code></p>
+<p>This will open an editor where you can correct the commit message. Change "explaination" to "explanation" and save the changes.</p>
+<ol>
+<li><strong>Continue the Rebase:</strong></li>
+</ol>
+<p>After amending the commit, continue the rebase process:</p>
+<p><code>bash
+   git rebase --continue</code></p>
+<p>If there are more commits to edit or resolve conflicts, Git will guide you through the process. Otherwise, the rebase will complete.</p>
+<ol>
+<li><strong>Force Push the Changes:</strong></li>
+</ol>
+<p>Since you've rewritten the commit history, you need to force-push the changes to your remote repository:</p>
+<p><code>bash
+   git push origin +HEAD</code></p>
+<h3 id="summary">Summary</h3>
+<p>In this step, you've used an interactive rebase to either remove or edit a specific commit. This is a powerful way to clean up your commit history, but it should be used carefully, especially when collaborating with others, as it rewrites the commit history.</p>
+<h3 id="monitoring-the-latest-change-made-to-a-git-repository">Monitoring the latest change made to a Git repository</h3>
+<p>To know the <strong>latest change made to a Git repository</strong>, you can use the following command in your terminal:</p>
+<pre><code class="language-bash">git log -1
+</code></pre>
+<p>This command shows the <strong>most recent commit</strong>, including:</p>
+<ul>
+<li>Commit hash</li>
+<li>Author</li>
+<li>Date</li>
+<li>Commit message</li>
+</ul>
+<h3 id="example-output">Example Output:</h3>
+<pre><code>commit 1a2b3c4d5e6f7g8h9i0j
+Author: Jane Doe &lt;jane@example.com&gt;
+Date:   Wed Apr 30 16:00:00 2025 +0200
+
+    Fix typo in README and update installation instructions
+</code></pre>
+<h3 id="if-you-want-just-a-one-liner-summary">If you want just a one-liner summary:</h3>
+<pre><code class="language-bash">git log -1 --oneline
+</code></pre>
+<h3 id="to-see-which-files-were-changed-in-that-commit">To see which files were changed in that commit:</h3>
+<pre><code class="language-bash">git show --name-only
+</code></pre>
+<p>Or to combine both into a more readable view:</p>
+<pre><code class="language-bash">git show --stat -1
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.sections", "navigation.path"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

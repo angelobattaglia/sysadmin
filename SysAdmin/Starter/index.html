@@ -1,0 +1,1087 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Cloud/">
+      
+      
+        <link rel="next" href="../Tools/">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+    
+    
+      
+        <title>Starting Shell Programming - System Administration</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#starting-shell-programming" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="System Administration" class="md-header__button md-logo" aria-label="System Administration" data-md-component="logo">
+      
+  <img src="../../images/sys.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            System Administration
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Starting Shell Programming
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Docker/" class="md-tabs__link">
+        
+  
+    
+  
+  Docker
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Git/" class="md-tabs__link">
+        
+  
+    
+  
+  Git
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Links/" class="md-tabs__link">
+        
+  
+    
+  
+  Links
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../MkDocs/" class="md-tabs__link">
+        
+  
+    
+  
+  MkDocs
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../SSH_GPG/" class="md-tabs__link">
+        
+  
+    
+  
+  SSH and GPG
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../Arch/" class="md-tabs__link">
+          
+  
+    
+  
+  SysAdmin
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="System Administration" class="md-nav__button md-logo" aria-label="System Administration" data-md-component="logo">
+      
+  <img src="../../images/sys.png" alt="logo">
+
+    </a>
+    System Administration
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Git/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Links/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Links
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MkDocs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MkDocs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SSH_GPG/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SSH and GPG
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    SysAdmin
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            SysAdmin
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Arch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arch linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cloud/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Connecting to a GPU cluster: a walkthrough
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Starting Shell Programming
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Starting Shell Programming
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tools-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tools needed
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tools/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tweaks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tweaking the System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bluetooth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bluetooth
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bootable_usb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bootable usb
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../i3blocks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    i3blocks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../i3wm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setting up i3wm on a Thinkpad computer (perhaps useful for other brands)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tools-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tools needed
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="starting-shell-programming">Starting Shell Programming</h1>
+<p>Learning how to use sed, awk, grep, cat, fdisk and more</p>
+<h3 id="tools-needed">Tools needed</h3>
+<ul>
+<li>Shell: zsh, bash, ash, dash</li>
+<li>Any TUI text editor (Vim, Emacs, Nano ..)</li>
+<li>Any terminal emulator</li>
+</ul>
+<h1 id="adding-to-path-any-folder-of-executable-scripts">Adding to $PATH any folder of executable scripts</h1>
+<p>Open your ".zshrc" or ".bashrc". Ideally these two files are located in your ~/ folder.
+To add the folder named "bin" to the $PATH variable, just add the following to your configuration file</p>
+<pre><code class="language-shell">export PATH=&quot;$PATH:/home/username/bin&quot;
+</code></pre>
+<p>Now you can write your scripts in python, shell or other languages, making them executable and add
+the folder where these scripts are located to your $PATH environment variable to use them everywhere while
+browsing your filesystem with the shell</p>
+<p>If you have a script that launches a specific application, you can use symlinking and adding to $PATH
+to launch that application from anywhere in your file system</p>
+<pre><code class="language-shell">ln -s /home/username/programs/java/eclipse/eclipse /home/username/bin
+</code></pre>
+<h1 id="getting-the-size-of-a-directory-on-the-command-line">Getting the size of a directory on the command line</h1>
+<pre><code class="language-shell">du -s, --summarize
+        # display only a total for each argument
+
+du -h, --human-readable
+        # print sizes in human readable format (e.g., 1K 234M 2G)
+
+du -hs
+</code></pre>
+<p>Adding a directory to the PATH environment variable in Linux is a useful way to ensure that the executables in that directory can be run from any location in the command line without specifying the full path. Here’s how to add a directory to your PATH in a few steps:</p>
+<h3 id="temporary-addition">Temporary Addition</h3>
+<p>If you want to add a directory to the PATH temporarily, meaning it will only last for the duration of the session or terminal window, you can use the following command in the terminal:</p>
+<pre><code class="language-bash">export PATH=$PATH:/path/to/directory
+</code></pre>
+<p>Replace <code>/path/to/directory</code> with the actual path of the directory you want to add. This change will last until the terminal is closed.</p>
+<h3 id="permanent-addition">Permanent Addition</h3>
+<p>To make the addition permanent, you will need to add the export command to a startup file like <code>.bashrc</code>, <code>.bash_profile</code>, or <code>.profile</code>, depending on the shell and setup you are using.</p>
+<ol>
+<li><strong>Open your terminal</strong>.</li>
+<li><strong>Edit the startup file</strong>:</li>
+<li>If you are using Bash, you can add the directory to your PATH in your <code>.bashrc</code> or <code>.bash_profile</code> file. Open the file with a text editor, such as nano:
+     <code>bash
+     nano ~/.bashrc</code></li>
+<li>
+<p>For other shells, like Zsh, you might edit <code>.zshrc</code>.</p>
+</li>
+<li>
+<p><strong>Add the export command</strong> to the end of the file:
+   <code>bash
+   export PATH=$PATH:/path/to/directory</code>
+   Again, replace <code>/path/to/directory</code> with your specific directory.</p>
+</li>
+<li>
+<p><strong>Save and close</strong> the file. For nano, press <code>Ctrl + X</code>, then <code>Y</code> to confirm, and <code>Enter</code> to save.</p>
+</li>
+<li>
+<p><strong>Source the file</strong> to apply the changes immediately without needing to restart your terminal:
+   <code>bash
+   source ~/.bashrc</code>
+   Replace <code>.bashrc</code> with the name of the file you edited, if different.</p>
+</li>
+</ol>
+<h3 id="verify-the-change">Verify the Change</h3>
+<p>After adding the directory to your PATH, you can verify that it was added successfully by typing:</p>
+<pre><code class="language-bash">echo $PATH
+</code></pre>
+<p>This command will display the contents of your PATH variable, and you should see your directory listed there.</p>
+<p>Adding directories to the PATH is a common practice for simplifying command executions and script runs, especially for custom scripts or software installed in non-standard locations.</p>
+<p>The decision to install binaries in <code>/usr/bin</code> or <code>~/.local/bin</code> depends on several factors, including user permissions, system scope, and organizational practices. Here's a detailed comparison to help you make an informed choice:</p>
+<h3 id="installing-binaries-in-usrbin">Installing Binaries in <code>/usr/bin</code></h3>
+<p><strong>Pros:</strong>
+1. <strong>System-Wide Availability:</strong> Binaries installed in <code>/usr/bin</code> are accessible to all users on the system, making them ideal for software that needs to be available system-wide.
+2. <strong>Standard Practice:</strong> It's a conventional location for executable binaries, ensuring consistency with many installation scripts and package managers.
+3. <strong>Path Inclusion:</strong> By default, <code>/usr/bin</code> is included in the system PATH, meaning users can run these binaries without modifying their environment.</p>
+<p><strong>Cons:</strong>
+1. <strong>Requires Root Privileges:</strong> Installing binaries in <code>/usr/bin</code> typically requires root or superuser privileges, which might not be desirable or possible in all situations.
+2. <strong>Risk of Overwriting:</strong> There's a risk of overwriting existing binaries, leading to potential conflicts or system issues.</p>
+<h3 id="installing-binaries-in-localbin">Installing Binaries in <code>~/.local/bin</code></h3>
+<p><strong>Pros:</strong>
+1. <strong>User-Specific Installation:</strong> Binaries installed in <code>~/.local/bin</code> are only accessible to the user who installed them, providing a personalized environment without affecting other users.
+2. <strong>No Root Required:</strong> Installation in this directory does not require root privileges, making it a safer and more accessible option for users without administrative access.
+3. <strong>Conflict Avoidance:</strong> Reduces the risk of overwriting system binaries and minimizes potential conflicts.</p>
+<p><strong>Cons:</strong>
+1. <strong>Manual PATH Management:</strong> You might need to manually add <code>~/.local/bin</code> to your PATH if it’s not already included. This can be done by adding a line to your shell configuration file (e.g., <code>.bashrc</code>, <code>.zshrc</code>):</p>
+<p><code>sh
+   export PATH="$HOME/.local/bin:$PATH"</code></p>
+<ol>
+<li><strong>User-Specific:</strong> Binaries are not available system-wide, which might be a limitation if you want other users to have access to the same tools.</li>
+</ol>
+<h3 id="recommendations">Recommendations</h3>
+<ul>
+<li>
+<p><strong>For Personal Use and Development:</strong> If you are installing binaries for personal use or development purposes, <code>~/.local/bin</code> is generally the better choice. It avoids the need for root privileges and ensures you don’t interfere with system-wide binaries.</p>
+</li>
+<li>
+<p><strong>For System-Wide Tools:</strong> If the binaries need to be available to all users or are part of system-wide software, <code>/usr/bin</code> is more appropriate, provided you have the necessary administrative rights and are cautious about potential conflicts.</p>
+</li>
+</ul>
+<h3 id="practical-example">Practical Example:</h3>
+<p>Suppose you're installing a custom script or tool you've developed. If it's just for your use, you would:</p>
+<ol>
+<li>Place the binary in <code>~/.local/bin</code>:
+   <code>sh
+   cp my_script ~/.local/bin/</code></li>
+<li>Ensure <code>~/.local/bin</code> is in your PATH (if not already):
+   <code>sh
+   echo 'export PATH="$HOME/.local/bin:$PATH"' &gt;&gt; ~/.bashrc
+   source ~/.bashrc</code></li>
+</ol>
+<p>For system-wide tools, you would:
+1. Use root privileges to place the binary in <code>/usr/bin</code>:
+   <code>sh
+   sudo cp my_tool /usr/bin/</code></p>
+<h3 id="conclusion">Conclusion</h3>
+<p>Choose <code>~/.local/bin</code> for user-specific installations and <code>/usr/bin</code> for system-wide installations, taking into account permissions, scope, and potential conflicts. This approach ensures flexibility and maintains system integrity.</p>
+<h1 id="my-practice">My practice</h1>
+<p>Compiling binaries in a personal directory (like <code>~/bin</code>) and then creating symlinks in system-wide or user-specific directories
+is indeed a good practice and is commonly followed by experienced users. This approach offers several advantages:</p>
+<h3 id="advantages-of-compiling-in-bin-and-creating-symlinks">Advantages of Compiling in <code>~/bin</code> and Creating Symlinks</h3>
+<ol>
+<li><strong>Organization:</strong> Keeps your compiled binaries organized and separate from system-wide binaries, reducing clutter and potential conflicts.</li>
+<li><strong>Safety:</strong> Avoids the risk of overwriting system binaries or binaries managed by package managers.</li>
+<li><strong>Flexibility:</strong> Makes it easy to update or remove binaries without affecting system directories. You can manage your compiled binaries independently.</li>
+<li><strong>Ease of Management:</strong> Simplifies the process of maintaining and upgrading software. You can simply replace the binary in <code>~/bin</code> and the symlink remains unchanged.</li>
+</ol>
+<h3 id="steps-to-follow">Steps to Follow</h3>
+<h4 id="1-compile-the-binary">1. Compile the Binary</h4>
+<p>First, download and compile the software in your personal directory, such as <code>~/bin</code>:</p>
+<pre><code class="language-sh">cd ~/bin
+git clone https://github.com/your/repository.git
+cd repository
+make
+# or the appropriate build command (e.g., cmake, ./configure &amp;&amp; make, etc.)
+</code></pre>
+<h4 id="2-create-a-symlink-in-usrbin-or-localbin">2. Create a Symlink in <code>/usr/bin</code> or <code>~/.local/bin</code></h4>
+<p>After compiling the binary, create a symlink in either <code>/usr/bin</code> (for system-wide access) or <code>~/.local/bin</code> (for user-specific access):</p>
+<ul>
+<li><strong>For System-Wide Access:</strong></li>
+</ul>
+<p><code>sh
+  sudo ln -s ~/bin/repository/compiled_binary /usr/bin/compiled_binary</code></p>
+<ul>
+<li><strong>For User-Specific Access:</strong></li>
+</ul>
+<p><code>sh
+  ln -s ~/bin/repository/compiled_binary ~/.local/bin/compiled_binary</code></p>
+<h3 id="example">Example</h3>
+<p>Let's take the example of compiling and installing Neovim:</p>
+<ol>
+<li><strong>Compile Neovim:</strong></li>
+</ol>
+<p><code>sh
+   cd ~/bin
+   git clone https://github.com/neovim/neovim.git
+   cd neovim
+   make CMAKE_BUILD_TYPE=Release</code></p>
+<ol>
+<li>
+<p><strong>Create a Symlink:</strong></p>
+</li>
+<li>
+<p><strong>For System-Wide Access:</strong></p>
+<p><code>sh
+ sudo ln -s ~/bin/neovim/build/bin/nvim /usr/bin/nvim</code></p>
+</li>
+<li>
+<p><strong>For User-Specific Access:</strong></p>
+<p><code>sh
+ ln -s ~/bin/neovim/build/bin/nvim ~/.local/bin/nvim</code></p>
+</li>
+</ol>
+<h3 id="best-practices">Best Practices</h3>
+<ul>
+<li><strong>Permissions Management:</strong> Ensure that your personal directory (<code>~/bin</code>) has the appropriate permissions to avoid unauthorized access.</li>
+<li><strong>PATH Configuration:</strong> Make sure that <code>~/.local/bin</code> is included in your PATH. This is typically done by adding the following line to your shell configuration file (e.g., <code>.bashrc</code>, <code>.zshrc</code>):</li>
+</ul>
+<p><code>sh
+  export PATH="$HOME/.local/bin:$PATH"</code></p>
+<ul>
+<li><strong>Version Management:</strong> If you need to manage multiple versions of the same software, use versioned directories and symlinks to switch between them easily.</li>
+</ul>
+<h3 id="conclusion_1">Conclusion</h3>
+<p>Compiling software in <code>~/bin</code> and creating symlinks in <code>/usr/bin</code> or <code>~/.local/bin</code> is a well-regarded practice among expert users. It provides a clean, flexible, and safe way to manage custom-compiled binaries without interfering with system directories or package-managed files. This method enhances maintainability and minimizes the risk of conflicts.</p>
+<h3 id="installing-deb-packages-on-debian-based-systems-with-dpkg-i">Installing <code>.deb</code> packages on debian-based systems with <code>dpkg -i</code></h3>
+<p>To install a <code>.deb</code> package on a Linux system, you'll typically use the <code>dpkg</code> command. Here’s a step-by-step guide:</p>
+<ol>
+<li>
+<p><strong>Open a Terminal:</strong> You can usually open the terminal from your applications menu or by pressing <code>Ctrl + Alt + T</code>.</p>
+</li>
+<li>
+<p><strong>Navigate to the Directory Containing the <code>.deb</code> File:</strong> Use the <code>cd</code> command to change to the directory where your <code>.deb</code> file is located. For example, if it's in your <code>Downloads</code> folder, you would type:
+   <code>bash
+   cd ~/Downloads</code></p>
+</li>
+<li>
+<p><strong>Install the Package with <code>dpkg</code>:</strong> Use the <code>dpkg -i</code> command followed by the package name to install it. Replace <code>package_name.deb</code> with the actual name of your file:
+   <code>bash
+   sudo dpkg -i package_name.deb</code>
+   You need to use <code>sudo</code> to gain the necessary permissions to install software.</p>
+</li>
+<li>
+<p><strong>Resolve Dependencies:</strong> Sometimes, a <code>.deb</code> file might require other packages that are not currently installed on your system. If <code>dpkg</code> reports missing dependencies, you can ask the package manager to fix these issues by running:
+   <code>bash
+   sudo apt-get install -f</code>
+   This command will install any missing dependencies and complete the setup of your <code>.deb</code> package.</p>
+</li>
+</ol>
+<p>These steps should help you install most <code>.deb</code> files on your Linux system. If you encounter specific errors during the installation, they usually provide hints on what's wrong and how to fix it.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.sections", "navigation.path"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
