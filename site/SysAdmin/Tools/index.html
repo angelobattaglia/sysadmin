@@ -1,0 +1,1951 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Starter/">
+      
+      
+        <link rel="next" href="../Tweaks/">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+    
+    
+      
+        <title>Tools - System Administration</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pandoc" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="System Administration" class="md-header__button md-logo" aria-label="System Administration" data-md-component="logo">
+      
+  <img src="../../images/sys.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            System Administration
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Tools
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Docker/" class="md-tabs__link">
+        
+  
+    
+  
+  Docker
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Git/" class="md-tabs__link">
+        
+  
+    
+  
+  Git
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Links/" class="md-tabs__link">
+        
+  
+    
+  
+  Links
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../MkDocs/" class="md-tabs__link">
+        
+  
+    
+  
+  MkDocs
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../SSH_GPG/" class="md-tabs__link">
+        
+  
+    
+  
+  SSH and GPG
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../Arch/" class="md-tabs__link">
+          
+  
+    
+  
+  SysAdmin
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="System Administration" class="md-nav__button md-logo" aria-label="System Administration" data-md-component="logo">
+      
+  <img src="../../images/sys.png" alt="logo">
+
+    </a>
+    System Administration
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Git/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Links/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Links
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MkDocs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MkDocs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SSH_GPG/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SSH and GPG
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    SysAdmin
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            SysAdmin
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Arch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arch linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cloud/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Connecting to a GPU cluster: a walkthrough
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Starter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Starting Shell Programming
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Tools
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Tools
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pandoc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pandoc
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pandoc">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-install-pandoc" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Install Pandoc:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-convert-docx-to-plain-text" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Convert .docx to Plain Text:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-edit-the-plain-text-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Edit the Plain Text File:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-convert-plain-text-back-to-docx" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Convert Plain Text Back to .docx:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#note" class="md-nav__link">
+    <span class="md-ellipsis">
+      Note:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#starting-rtorrent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Starting rtorrent:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Usage:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Tips:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#starting-rtorrent_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Starting rTorrent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Commands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-in-the-background" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running in the Background
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#note_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Note
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#further-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Further Learning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#launching-rtorrent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Launching rTorrent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#navigating-the-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      Navigating the Interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#managing-torrents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Managing Torrents
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitoring-and-adjusting-torrents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring and Adjusting Torrents
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installation_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-usage_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-usage_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-launch-rtorrent" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Launch rTorrent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-add-the-magnet-link" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Add the Magnet Link
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-monitor-the-download" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Monitor the Download
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-manage-the-download" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Manage the Download
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-exit-rtorrent" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Exit rTorrent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#note-on-magnet-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      Note on Magnet Links
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-usage_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Output
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#useful-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Useful Options
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitoring-power-and-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring Power and Performance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-bash-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Bash Script
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conclusion_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tweaks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tweaking the System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bluetooth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bluetooth
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bootable_usb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bootable usb
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../i3blocks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    i3blocks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../i3wm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setting up i3wm on a Thinkpad computer (perhaps useful for other brands)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pandoc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pandoc
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pandoc">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-install-pandoc" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Install Pandoc:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-convert-docx-to-plain-text" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Convert .docx to Plain Text:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-edit-the-plain-text-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Edit the Plain Text File:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-convert-plain-text-back-to-docx" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Convert Plain Text Back to .docx:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#note" class="md-nav__link">
+    <span class="md-ellipsis">
+      Note:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#starting-rtorrent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Starting rtorrent:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Usage:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Tips:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#starting-rtorrent_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Starting rTorrent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Commands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-in-the-background" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running in the Background
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#note_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Note
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#further-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Further Learning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#launching-rtorrent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Launching rTorrent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#navigating-the-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      Navigating the Interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#managing-torrents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Managing Torrents
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitoring-and-adjusting-torrents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring and Adjusting Torrents
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installation_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-usage_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-usage_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-launch-rtorrent" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Launch rTorrent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-add-the-magnet-link" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Add the Magnet Link
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-monitor-the-download" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Monitor the Download
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-manage-the-download" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Manage the Download
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-exit-rtorrent" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Exit rTorrent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#note-on-magnet-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      Note on Magnet Links
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-usage_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Output
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#useful-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Useful Options
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitoring-power-and-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring Power and Performance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-bash-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Bash Script
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conclusion_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Tools</h1>
+
+<h2 id="pandoc">Pandoc</h2>
+<h3 id="1-install-pandoc">1. Install Pandoc:</h3>
+<p>Make sure you have Pandoc installed on your system. You can download it from the official website: <a href="https://pandoc.org/installing.html">Pandoc Installation</a>.</p>
+<h3 id="2-convert-docx-to-plain-text">2. Convert .docx to Plain Text:</h3>
+<p>Use the following command to convert your .docx file to plain text (e.g., Markdown):</p>
+<pre><code class="language-bash">pandoc input.docx -o output.md
+</code></pre>
+<p>Replace "input.docx" with the name of your input file and "output.md" with the desired name for the plain text file. You can use Markdown as it is a plain text format that can be easily edited.</p>
+<h3 id="3-edit-the-plain-text-file">3. Edit the Plain Text File:</h3>
+<p>Open the generated plain text file with a text editor of your choice, make the necessary modifications, and save the changes.</p>
+<h3 id="4-convert-plain-text-back-to-docx">4. Convert Plain Text Back to .docx:</h3>
+<p>Once you've made your edits, use the following command to convert the modified plain text file back to .docx:</p>
+<pre><code class="language-bash">pandoc input.md -o output.docx
+</code></pre>
+<p>Replace "input.md" with the name of your modified plain text file and "output.docx" with the desired name for the final .docx file.</p>
+<h3 id="note">Note:</h3>
+<ul>
+<li>Pandoc may not perfectly preserve all formatting details of complex .docx files, especially if they contain advanced features. Simple documents generally convert more successfully.</li>
+<li>Depending on your editing needs, you might want to choose a plain text format that best suits your document structure and content.</li>
+</ul>
+<p>Please check the Pandoc documentation for any updates or changes in command options beyond my last knowledge update in January 2022. If there are new features or improvements, you may find them in the latest documentation or release notes on the Pandoc website.</p>
+<ol>
+<li>
+<p><strong>Prepare the RTF File</strong>: Make sure your RTF file is accessible and that you know the path to the file.</p>
+</li>
+<li>
+<p><strong>Open a Command Line Interface</strong>: This could be Command Prompt on Windows, Terminal on macOS, or any terminal emulator on Linux.</p>
+</li>
+<li>
+<p><strong>Use the Pandoc Command</strong>: To convert the RTF file to Markdown, use the following command in the terminal:
+   <code>bash
+   pandoc -s yourfile.rtf -o outputfile.md</code>
+   Here, replace <code>yourfile.rtf</code> with the path to your RTF file, and <code>outputfile.md</code> with the desired output Markdown file name.</p>
+</li>
+<li>
+<p><strong>Check the Output</strong>: After running the command, check the output Markdown file to ensure the conversion went as expected. Depending on the complexity and features used in your RTF file, you might need to make minor manual adjustments to the Markdown file.</p>
+</li>
+</ol>
+<p>Pandoc does a commendable job of converting between file formats, but it's worth noting that some formatting may not be perfectly translated due to differences in how formats handle styles and structures. This is particularly true with rich text formats like RTF, which can include a variety of formatting and embedded objects.</p>
+<p><code>rtorrent</code> is a command-line based BitTorrent client for Unix-like operating systems. It is designed to be lightweight and efficient. Here are some basic steps to use <code>rtorrent</code>:</p>
+<h3 id="installation">Installation:</h3>
+<p>First, make sure you have <code>rtorrent</code> installed on your system. You can install it using your package manager. For example, on Debian-based systems:</p>
+<pre><code class="language-bash">sudo apt-get update
+sudo apt-get install rtorrent
+</code></pre>
+<h3 id="configuration">Configuration:</h3>
+<p><code>rtorrent</code> uses a configuration file located at <code>~/.rtorrent.rc</code> by default. You can create or edit this file to customize your settings. Here's a simple example:</p>
+<pre><code class="language-bash"># ~/.rtorrent.rc
+
+# Set the default download directory
+directory = ~/Downloads
+
+# Enable and set the port for incoming connections
+port_range = 6881-6881
+</code></pre>
+<h3 id="starting-rtorrent">Starting <code>rtorrent</code>:</h3>
+<p>You can start <code>rtorrent</code> by simply running the <code>rtorrent</code> command in the terminal:</p>
+<pre><code class="language-bash">rtorrent
+</code></pre>
+<h3 id="basic-usage">Basic Usage:</h3>
+<ol>
+<li><strong>Adding Torrents:</strong></li>
+<li>Press <code>Ctrl + S</code> to open the prompt for adding a new torrent.</li>
+<li>
+<p>Enter the URL or path to the torrent file.</p>
+</li>
+<li>
+<p><strong>Managing Torrents:</strong></p>
+</li>
+<li>Use <code>Ctrl + D</code> to start or stop a torrent.</li>
+<li>
+<p>Use <code>Ctrl + K</code> to remove a torrent.</p>
+</li>
+<li>
+<p><strong>Viewing Information:</strong></p>
+</li>
+<li>
+<p>Use <code>Ctrl + N</code> to toggle the view between different panels.</p>
+</li>
+<li>
+<p><strong>Adjusting Settings:</strong></p>
+</li>
+<li>
+<p>You can adjust various settings, including download/upload speed limits, by editing the configuration file.</p>
+</li>
+<li>
+<p><strong>Exiting <code>rtorrent</code>:</strong></p>
+</li>
+<li>Use <code>Ctrl + Q</code> to exit <code>rtorrent</code>.</li>
+</ol>
+<h3 id="additional-tips">Additional Tips:</h3>
+<ul>
+<li>
+<p>You can find more information about <code>rtorrent</code> and its keybindings in the <a href="https://github.com/rakshasa/rtorrent/wiki/User-Guide">rtorrent User Guide</a>.</p>
+</li>
+<li>
+<p><code>rtorrent</code> has a rich set of features, and you may want to explore additional plugins and configurations based on your needs.</p>
+</li>
+<li>
+<p>For advanced users, you can also use the <code>rtorrent</code> XMLRPC interface to control <code>rtorrent</code> remotely or integrate it with other applications.</p>
+</li>
+</ul>
+<p>Keep in mind that <code>rtorrent</code> is a powerful tool, but it may have a steeper learning curve compared to some GUI-based BitTorrent clients. However, it provides a lot of flexibility and control once you get used to it.</p>
+<p>To add a torrent to <code>rtorrent</code> using a magnet link, follow these steps:</p>
+<ol>
+<li><strong>Open <code>rtorrent</code>:</strong></li>
+<li>
+<p>Open your terminal and run <code>rtorrent</code>.</p>
+</li>
+<li>
+<p><strong>Adding a Magnet Link:</strong></p>
+</li>
+<li>Press <code>Ctrl + S</code> to open the prompt for adding a new torrent.</li>
+<li>Enter the magnet link when prompted.</li>
+</ol>
+<p>Alternatively, you can start <code>rtorrent</code> with the magnet link as a command-line argument:</p>
+<p><code>bash
+   rtorrent 'magnet:?xt=urn:btih:your_magnet_link_here'</code></p>
+<p>Replace <code>'magnet:?xt=urn:btih:your_magnet_link_here'</code> with the actual magnet link you want to use.</p>
+<ol>
+<li><strong>Managing Torrents:</strong></li>
+<li>Use <code>Ctrl + D</code> to start or stop a torrent.</li>
+<li>Use <code>Ctrl + K</code> to remove a torrent.</li>
+</ol>
+<p>Remember that some magnet links might require additional trackers or metadata, and <code>rtorrent</code> will automatically try to fetch the necessary information.</p>
+<p>If you encounter any issues, make sure your <code>rtorrent</code> is properly configured and has access to the necessary network resources. Additionally, ensure that your system has the required dependencies for handling magnet links.</p>
+<p>Note: Magnet links don't contain the file structure information like traditional torrent files, so <code>rtorrent</code> will create a folder with the torrent's hash as the name in your download directory. Inside this folder, it will download the files associated with the magnet link.</p>
+<p><code>rTorrent</code> is a text-based BitTorrent client for UNIX and UNIX-like systems, known for its efficiency and minimalist interface. It's highly customizable and often used in combination with a screen or tmux session to allow it to run continuously in the background. Here's a basic guide on how to use <code>rTorrent</code>:</p>
+<h3 id="installation_1">Installation</h3>
+<ul>
+<li><strong>Linux</strong>: <code>rTorrent</code> is usually available in the repositories of most Linux distributions. You can install it using your package manager. For example, on Debian-based systems like Ubuntu, you can use <code>sudo apt-get install rtorrent</code>.</li>
+<li><strong>macOS</strong>: You can install <code>rTorrent</code> using Homebrew with the command <code>brew install rtorrent</code>.</li>
+</ul>
+<h3 id="starting-rtorrent_1">Starting rTorrent</h3>
+<ul>
+<li>Open a terminal and type <code>rtorrent</code> to start the program.</li>
+<li>The interface is entirely text-based and navigated using the keyboard.</li>
+</ul>
+<h3 id="basic-commands">Basic Commands</h3>
+<ul>
+<li><strong>Adding a Torrent</strong>: You can add a torrent by pressing <code>Backspace</code> and then entering the URL or file path to the .torrent file.</li>
+<li><strong>Starting/Stopping Downloads</strong>: Use the arrow keys to navigate to the torrent you want to start or stop and press <code>Ctrl+S</code> to start or <code>Ctrl+D</code> to stop (pressing <code>Ctrl+D</code> twice will remove the torrent).</li>
+<li><strong>Viewing Torrent Details</strong>: Select a torrent and press the right arrow key to view more details about it.</li>
+<li><strong>Changing Download Directories</strong>: Before starting a torrent, you can change the download directory by pressing <code>*</code>, then entering the new path.</li>
+</ul>
+<h3 id="configuration_1">Configuration</h3>
+<ul>
+<li><code>rTorrent</code> allows extensive configuration through its <code>.rtorrent.rc</code> file located in your home directory. You can set download directories, configure port forwarding, set up rate limits, etc.</li>
+<li>The configuration file uses a simple syntax and is well-documented online.</li>
+</ul>
+<h3 id="running-in-the-background">Running in the Background</h3>
+<ul>
+<li>To keep <code>rTorrent</code> running continuously, you can use <code>screen</code> or <code>tmux</code>. Start a new screen session with <code>screen</code>, run <code>rtorrent</code>, then detach from the screen with <code>Ctrl+A, D</code>.</li>
+<li>You can reattach to the session later with <code>screen -r</code>.</li>
+</ul>
+<h3 id="advanced-usage">Advanced Usage</h3>
+<ul>
+<li><code>rTorrent</code> supports scripting and can be integrated with various web interfaces for easier management.</li>
+<li>It also supports advanced features like RSS feed parsing, scheduling, and automation.</li>
+</ul>
+<h3 id="note_1">Note</h3>
+<ul>
+<li>Remember that while <code>rTorrent</code> is a powerful tool, you should always use it responsibly and legally. Ensure that you have the right to download and share the content you are using <code>rTorrent</code> for.</li>
+</ul>
+<h3 id="further-learning">Further Learning</h3>
+<ul>
+<li>For more advanced configurations and usage scenarios, refer to the <code>rTorrent</code> user guide or community forums.</li>
+</ul>
+<p><code>rTorrent</code> has a learning curve, especially for users not familiar with terminal-based applications, but it's highly regarded for its performance and flexibility once mastered.</p>
+<p>Using <code>rTorrent</code> directly from the shell involves a combination of command-line navigation and keyboard shortcuts specific to <code>rTorrent</code>. Here's a more detailed guide on how to operate <code>rTorrent</code> from the shell:</p>
+<h3 id="launching-rtorrent">Launching rTorrent</h3>
+<ol>
+<li><strong>Open your terminal</strong>: This can be done by searching for “Terminal” in your applications menu or using a keyboard shortcut, often <code>Ctrl+Alt+T</code> on Linux.</li>
+<li><strong>Start rTorrent</strong>: Simply type <code>rtorrent</code> and press <code>Enter</code>. This will launch the <code>rTorrent</code> interface within your terminal.</li>
+</ol>
+<h3 id="navigating-the-interface">Navigating the Interface</h3>
+<ul>
+<li><strong>Navigation</strong>: Use the <code>Up</code> and <code>Down</code> arrow keys to navigate through the list of torrents.</li>
+<li><strong>Details View</strong>: To view details of a selected torrent, press the <code>Right</code> arrow key. To return to the main view, press the <code>Left</code> arrow key.</li>
+</ul>
+<h3 id="managing-torrents">Managing Torrents</h3>
+<ul>
+<li><strong>Adding a Torrent</strong>: Press <code>Backspace</code>, then type the URL or path to the .torrent file and press <code>Enter</code>.</li>
+<li><strong>Starting a Torrent</strong>: Select a torrent with the arrow keys and press <code>Ctrl+S</code> to start it.</li>
+<li><strong>Stopping a Torrent</strong>: Select the torrent and press <code>Ctrl+D</code> to stop it. Pressing <code>Ctrl+D</code> again removes the torrent from the list.</li>
+<li><strong>Changing the Download Directory</strong>: Before starting a torrent, select it, press <code>*</code>, then type the path to the desired download directory and press <code>Enter</code>.</li>
+</ul>
+<h3 id="monitoring-and-adjusting-torrents">Monitoring and Adjusting Torrents</h3>
+<ul>
+<li><strong>Checking Download/Upload Speed</strong>: The bottom of the <code>rTorrent</code> interface shows the global download and upload rates.</li>
+<li><strong>Adjusting Speed Limits</strong>: You can set</li>
+</ul>
+<p>Torrenting is a method of downloading and sharing files through a peer-to-peer (P2P) network. <code>rTorrent</code> is a popular, command-line based torrent client for Linux and Unix systems. It uses the libTorrent library, which is known for its high performance and low resource usage. Here's a basic guide on how to use <code>rTorrent</code> for torrenting:</p>
+<h3 id="installation_2">Installation</h3>
+<p>First, you need to install <code>rTorrent</code>. This can vary based on your operating system, but for most Linux distributions, you can use the package manager. For example, on Debian-based systems, you can install it using:</p>
+<pre><code class="language-bash">sudo apt-get update
+sudo apt-get install rtorrent
+</code></pre>
+<h3 id="basic-usage_1">Basic Usage</h3>
+<ol>
+<li>
+<p><strong>Starting rTorrent</strong>: Simply type <code>rtorrent</code> in your terminal and press Enter. This will open the <code>rTorrent</code> interface in your terminal.</p>
+</li>
+<li>
+<p><strong>Adding a Torrent</strong>: To download a file using a torrent, you need a torrent file or a magnet link. You can add a torrent in <code>rTorrent</code> by:</p>
+</li>
+<li>Hitting the <code>Enter</code> key to bring up the command line at the bottom of the interface.</li>
+<li>
+<p>Typing the path to the torrent file or pasting the magnet link, then pressing <code>Enter</code> again to start the download.</p>
+</li>
+<li>
+<p><strong>Managing Torrents</strong>: Once a torrent is added, you can see it in the main window. You can navigate through the list of torrents using the up and down arrow keys. Here are some basic commands:</p>
+</li>
+<li><code>^S</code> (Ctrl+S): Start the download.</li>
+<li><code>^D</code> (Ctrl+D): Stop the download or remove the torrent if pressed twice.</li>
+<li>
+<p><code>^K</code> (Ctrl+K): Stop and close the torrent (removes it from the list but doesn't delete the files).</p>
+</li>
+<li>
+<p><strong>Monitoring Progress</strong>: The main interface shows the progress of your downloads, including information like download and upload speed, file size, and completion percentage.</p>
+</li>
+<li>
+<p><strong>Exiting rTorrent</strong>: You can exit <code>rTorrent</code> by pressing <code>Ctrl+Q</code>. Ensure that your downloads are either paused or completed before exiting to avoid data loss.</p>
+</li>
+</ol>
+<h3 id="configuration_2">Configuration</h3>
+<p><code>rTorrent</code> is highly customizable through its configuration file, usually located at <code>~/.rtorrent.rc</code>. You can edit this file to set default directories for downloads, configure port ranges, set up speed limits, and much more. Here are a few basic settings you might want to configure:</p>
+<ul>
+<li><strong>Download directory</strong>: Set the default directory where your downloads will be stored.
+  <code>directory = ~/Downloads</code></li>
+<li><strong>Session directory</strong>: Specify the directory where <code>rTorrent</code> will store its session data.
+  <code>session = ~/.rtorrent/session</code></li>
+<li><strong>Port range</strong>: Define the range of ports <code>rTorrent</code> will use for incoming connections, which is crucial for optimizing download speeds.
+  <code>port_range = 50000-50000</code></li>
+<li><strong>DHT and Peer Exchange</strong>: Enable DHT (Distributed Hash Table) and Peer Exchange for better peer discovery.
+  <code>dht = auto
+  peer_exchange = yes</code></li>
+</ul>
+<p>After editing the configuration file, restart <code>rTorrent</code> for the changes to take effect.</p>
+<h3 id="advanced-usage_1">Advanced Usage</h3>
+<p><code>rTorrent</code> supports advanced features like watch directories (to automatically add torrents), scheduling, and scripting. These can be configured in the <code>.rtorrent.rc</code> file. For example, to set up a watch directory:</p>
+<pre><code>schedule = watch_directory,5,5,load.start=/path/to/watch/directory/*.torrent
+</code></pre>
+<p>This command tells <code>rTorrent</code> to check the specified directory every 5 seconds for new <code>.torrent</code> files and automatically start downloading them.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p><code>rTorrent</code> is a powerful and efficient CLI torrent client suitable for users who prefer a lightweight and configurable option. It might have a steeper learning curve due to its command-line nature, but it offers great flexibility and performance for managing torrents.</p>
+<p>Downloading content via a magnet link using <code>rTorrent</code> or any other torrent client involves a simple process. Magnet links are a popular way to share and download torrents without the need for a physical <code>.torrent</code> file. They provide a method to directly connect to the torrent's content using a hash value.</p>
+<p>Here's how you can download content using a magnet link in <code>rTorrent</code>:</p>
+<h3 id="1-launch-rtorrent">1. Launch <code>rTorrent</code></h3>
+<p>Open your terminal and start <code>rTorrent</code> by typing <code>rtorrent</code> and pressing Enter. This will bring up the <code>rTorrent</code> user interface in your terminal window.</p>
+<h3 id="2-add-the-magnet-link">2. Add the Magnet Link</h3>
+<p>To add a magnet link, you need to be in the <code>rTorrent</code> command line mode:
+- Press <code>Backspace</code> or <code>Enter</code> to get to the bottom command line within the <code>rTorrent</code> interface.
+- Type the following command (but don't press Enter yet):
+  <code>load.normal</code>
+- After typing <code>load.normal</code>, press <code>Space</code>, and then paste your magnet link right after it. The command should look something like this (with a much longer magnet link):
+  <code>load.normal magnet:?xt=urn:btih:EXAMPLE</code>
+- Press <code>Enter</code> to add the magnet link to <code>rTorrent</code>. The download should start automatically if the magnet link is valid and there are available peers.</p>
+<h3 id="3-monitor-the-download">3. Monitor the Download</h3>
+<p>Once the magnet link is added, you can see the download in the main <code>rTorrent</code> window. You can monitor its progress, including download speed, upload speed, and completion percentage.</p>
+<h3 id="4-manage-the-download">4. Manage the Download</h3>
+<p>While the download is active, you can use various <code>rTorrent</code> commands to manage it:
+- To pause or stop the download, highlight it using the arrow keys and press <code>Ctrl+S</code>.
+- To resume a paused download, select it and press <code>Ctrl+S</code> again.
+- To remove the torrent, select it and press <code>Ctrl+D</code>. Pressing <code>Ctrl+D</code> again will remove the torrent from the list but won't delete the downloaded files.</p>
+<h3 id="5-exit-rtorrent">5. Exit <code>rTorrent</code></h3>
+<p>Once your download is complete, or if you need to exit <code>rTorrent</code> for any reason, make sure to properly close it by pressing <code>Ctrl+Q</code>. This ensures that your session data is saved correctly.</p>
+<h3 id="note-on-magnet-links">Note on Magnet Links</h3>
+<p>Magnet links start downloading metadata (including the list of files and their sizes) from peers in the swarm before the actual content download begins. This process might take a few moments depending on the number of available peers and the overall health of the torrent.</p>
+<p>By following these steps, you can easily download files using magnet links in <code>rTorrent</code>. Remember that the speed and availability of your downloads depend on the torrent's health and the number of seeders and peers in the swarm.</p>
+<p>The <code>nvidia-smi</code> (NVIDIA System Management Interface) command-line tool is a powerful utility for monitoring and managing NVIDIA GPU devices. It provides real-time information about GPU usage, memory usage, temperature, and more. Here’s how you can use it effectively:</p>
+<h3 id="basic-usage_2">Basic Usage</h3>
+<ol>
+<li>
+<p><strong>Open a Terminal</strong>: On your Linux system, open a terminal window.</p>
+</li>
+<li>
+<p><strong>Run <code>nvidia-smi</code></strong>: Type the following command and press Enter:</p>
+</li>
+</ol>
+<p><code>bash
+   nvidia-smi</code></p>
+<p>This command will display a summary of the GPU status, including:</p>
+<ul>
+<li>GPU ID and name</li>
+<li>Driver version</li>
+<li>GPU memory usage (total, used, and free)</li>
+<li>GPU utilization (percentage of GPU resources being used)</li>
+<li>Temperature</li>
+<li>Running processes using the GPU</li>
+</ul>
+<h3 id="example-output">Example Output</h3>
+<p>Here’s an example of what the output might look like:</p>
+<pre><code>+-----------------------------------------------------------------------------+
+| NVIDIA-SMI 510.39.01    Driver Version: 510.39.01    CUDA Version: 11.6         |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  MemUsage | GPU Util  Compute M. | GPU Memory  | GPU-Util  |
+| GPU  Power Draw  | GPU Memory Util  | Process Name  | PID  |
+|===============================+======================+======================+
+|   0  GeForce GTX 1080 Ti  On | 00000000:01:00.0 Off |                  N/A |
+|  0%   36C    P8    22MiB / 11264MiB |      0%      Default |  0       |
+|    0W |      0%  |                      |  N/A  |
++-------------------------------+----------------------+----------------------+
+| Processes:                                                                  |
+|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+|  ID   ID   ID      |   |       |                             |   Usage      |
+|   0    N/A  N/A  N/A   N/A  N/A    N/A                    |      N/A     |
++-----------------------------------------------------------------------------+
+</code></pre>
+<h3 id="useful-options">Useful Options</h3>
+<p>Here are some commonly used options with <code>nvidia-smi</code>:</p>
+<ol>
+<li><strong>Monitor at Regular Intervals</strong>:</li>
+</ol>
+<p>To continuously monitor your GPU every second, use the <code>-l</code> (loop) option:</p>
+<p><code>bash
+   nvidia-smi -l 1</code></p>
+<p>This will refresh the output every second.</p>
+<ol>
+<li><strong>Display in CSV Format</strong>:</li>
+</ol>
+<p>To output the information in CSV format, which can be useful for logging or analysis:</p>
+<p><code>bash
+   nvidia-smi --query-gpu=timestamp,name,index,utilization.gpu,memory.total,memory.used,memory.free,temperature.gpu --format=csv</code></p>
+<ol>
+<li><strong>Query Specific Information</strong>:</li>
+</ol>
+<p>You can use the <code>--query-gpu</code> option to get specific information about the GPU. For example:</p>
+<p><code>bash
+   nvidia-smi --query-gpu=utilization.gpu,memory.used,memory.free --format=csv</code></p>
+<ol>
+<li><strong>Display GPU Processes</strong>:</li>
+</ol>
+<p>To see which processes are using the GPU:</p>
+<p><code>bash
+   nvidia-smi pmon</code></p>
+<ol>
+<li><strong>Kill a Process</strong>:</li>
+</ol>
+<p>If you want to terminate a process that is using the GPU, you can use the <code>-p</code> option followed by the process ID (PID):</p>
+<p><code>bash
+   nvidia-smi -i 0 -p &lt;PID&gt;</code></p>
+<ol>
+<li><strong>Set Application Clocks</strong> (advanced usage):</li>
+</ol>
+<p>You can set application clocks for a specific GPU to manage power and performance:</p>
+<p><code>bash
+   nvidia-smi -i 0 -ac &lt;mem_clock&gt;,&lt;graphics_clock&gt;</code></p>
+<h3 id="monitoring-power-and-performance">Monitoring Power and Performance</h3>
+<p>If you want to monitor power usage and performance, you can combine <code>nvidia-smi</code> with other monitoring tools. For example, you might want to create a bash script to log data at regular intervals.</p>
+<h3 id="example-bash-script">Example Bash Script</h3>
+<p>Here’s a simple example of a bash script that logs GPU usage every minute:</p>
+<pre><code class="language-bash">#!/bin/bash
+while true; do
+    echo &quot;Logging GPU usage at $(date)&quot; &gt;&gt; gpu_usage.log
+    nvidia-smi --query-gpu=timestamp,name,index,utilization.gpu,memory.total,memory.used,memory.free,temperature.gpu --format=csv &gt;&gt; gpu_usage.log
+    sleep 60
+done
+</code></pre>
+<h3 id="conclusion_1">Conclusion</h3>
+<p>The <code>nvidia-smi</code> command is a versatile tool for monitoring your NVIDIA GPUs. By using various options, you can tailor the information you receive to suit your needs, whether for performance tuning, troubleshooting, or resource management.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.sections", "navigation.path"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

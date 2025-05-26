@@ -9,14 +9,14 @@
       
       
       
-        <link rel="prev" href="../../Compilation%20Process/Basics/">
+        <link rel="prev" href="../../SSH_GPG/">
       
       
         <link rel="next" href="../Cloud/">
       
       
       <link rel="icon" href="../../images/favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.14">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
     
     
       
@@ -24,10 +24,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.fad675c6.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4af4bdda.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.356b1318.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -46,7 +46,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -63,7 +63,6 @@
     
     <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="indigo">
   
-    
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -94,7 +93,7 @@
     </a>
     <label class="md-header__button md-icon" for="__drawer">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -117,9 +116,10 @@
     
     
     
+    
       <label class="md-header__button md-icon" for="__search">
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
       </label>
       <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
@@ -128,21 +128,21 @@
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
         <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
       
     </form>
     <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             Initializing search
@@ -236,23 +236,6 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../Make/" class="md-tabs__link">
-        
-  
-    
-  
-  Make
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
       <a href="../../MkDocs/" class="md-tabs__link">
         
   
@@ -285,26 +268,6 @@
         
   
   
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../Compilation%20Process/Basics/" class="md-tabs__link">
-          
-  
-    
-  
-  Compilation Process
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
     
   
   
@@ -316,7 +279,7 @@
   
     
   
-  Shell
+  SysAdmin
 
         </a>
       </li>
@@ -374,6 +337,7 @@
   
   <span class="md-ellipsis">
     Welcome
+    
   </span>
   
 
@@ -394,6 +358,7 @@
   
   <span class="md-ellipsis">
     Docker
+    
   </span>
   
 
@@ -414,6 +379,7 @@
   
   <span class="md-ellipsis">
     Git
+    
   </span>
   
 
@@ -434,26 +400,7 @@
   
   <span class="md-ellipsis">
     Links
-  </span>
-  
-
-      </a>
-    </li>
-  
-
     
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Make/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Make
   </span>
   
 
@@ -474,6 +421,7 @@
   
   <span class="md-ellipsis">
     MkDocs
+    
   </span>
   
 
@@ -494,6 +442,7 @@
   
   <span class="md-ellipsis">
     SSH and GPG
+    
   </span>
   
 
@@ -506,78 +455,6 @@
       
   
   
-  
-  
-    
-    
-      
-        
-      
-    
-    
-    
-    
-      
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
-        
-          
-          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
-            
-  
-  <span class="md-ellipsis">
-    Compilation Process
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_8">
-            <span class="md-nav__icon md-icon"></span>
-            Compilation Process
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Compilation%20Process/Basics/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Basics
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
     
   
   
@@ -593,36 +470,50 @@
       
         
       
-    
-    
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
       
+        
+        
       
+      
+        
+      
+    
     
     <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
-          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
             
   
   <span class="md-ellipsis">
-    Shell
+    SysAdmin
+    
   </span>
   
 
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_9">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
-            Shell
+            SysAdmin
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -647,6 +538,7 @@
   
   <span class="md-ellipsis">
     Arch linux
+    
   </span>
   
 
@@ -658,6 +550,7 @@
   
   <span class="md-ellipsis">
     Arch linux
+    
   </span>
   
 
@@ -912,6 +805,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#linux-drive-and-partition-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linux Drive and Partition Config
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -933,6 +835,7 @@
   
   <span class="md-ellipsis">
     Connecting to a GPU cluster: a walkthrough
+    
   </span>
   
 
@@ -954,6 +857,29 @@
   
   <span class="md-ellipsis">
     Starting Shell Programming
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tools/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tools
+    
   </span>
   
 
@@ -975,6 +901,95 @@
   
   <span class="md-ellipsis">
     Tweaking the System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bluetooth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bluetooth
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bootable_usb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bootable usb
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../i3blocks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    i3blocks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../i3wm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setting up i3wm on a Thinkpad computer (perhaps useful for other brands)
+    
   </span>
   
 
@@ -1251,6 +1266,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#linux-drive-and-partition-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linux Drive and Partition Config
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1264,6 +1288,7 @@
               <article class="md-content__inner md-typeset">
                 
                   
+
 
 
 <h1 id="arch-linux">Arch linux</h1>
@@ -1339,12 +1364,13 @@ fdisk /dev/sda #the name of the Disk where I want to install Arch
 <p>Se sbaglio ad assegnare il tipo di partizione delle prime due, posso
 sempre premere t e il numero della partizione alla quale devo cambiare
 il tipo:</p>
-<p>esempio:
-t
+<p>example:</p>
+<pre><code class="language-shell">t
 1
-L per listare i tipi di partizione disponibili
-1 per EFI System
-e cambia da linux file system a EFI System</p>
+L # listing available partitions
+1 # for EFI system
+e # change from linux file system to an EFI System
+</code></pre>
 <p>t
 2
 L per listare i tipi di partizione disponibili
@@ -1352,8 +1378,8 @@ L per listare i tipi di partizione disponibili
 e cambia da linux file system a Linux swap</p>
 <p>Alla fine premi w per scrivere sul disco le nostre impostazioni</p>
 <h2 id="file-system">File System</h2>
-<p>Ora dobbiamo creare i diversi tipi di File System rispettivamente per
-ogni partizione che abbiamo creato:</p>
+<p>Now we need to create the different types of File System respectively for
+each partition we have created:</p>
 <p>Creating the file system Fat 32 in sda1</p>
 <pre><code class="language-shell">mkfs.fat -F32 /dev/sda1
 </code></pre>
@@ -1375,10 +1401,9 @@ ogni partizione che abbiamo creato:</p>
 <h3 id="generating-system-tabular-file-fstab-which-gives-infos-on-our-partitioning">Generating system tabular file fstab which gives infos on our partitioning:</h3>
 <pre><code class="language-shell">genfstab -U /mnt &gt;&gt; /mnt/etc/fstab
 </code></pre>
-<p>Ora diventiamo root della nostra installazione, ovvero passiamo dalla pendrive alla partizione /dev/sda3:
+<p>Now we become root of our installation, that is, we move from the pendrive to the /dev/sda3 partition:
 arch-chroot /mnt</p>
-<p>Ora il prompt dovrebbe essere cambiato, perché siamo nel nostro sistema operativo di base nella nostra partizione
-/dev/sda3 dentro il nostro file system</p>
+<p>Now the prompt should be changed, because we are in our base operating system in our /dev/sda3 partition inside our file system</p>
 <h2 id="locale">Locale</h2>
 <p>Setting the time-zone</p>
 <pre><code class="language-shell">ln -sf /usr/share/zoneinfo/Europe/Rome /etc/localtime
@@ -1403,12 +1428,12 @@ en_US.UTF-8 UTF-8
 <pre><code class="language-shell">locale-gen
 </code></pre>
 <p>Creating a config file on /etc/hostname</p>
-<pre><code class="language-shell">vim /etc/hostname
+<pre><code class="language-shell">nvim /etc/hostname
 # I could write, for example:
 t440p
 </code></pre>
 <h2 id="modifichiamo-il-file-hosts">Modifichiamo il file hosts</h2>
-<pre><code class="language-shell">vim /etc/hosts
+<pre><code class="language-shell">nvim /etc/hosts
   ```
 
 And I write on it the following..
@@ -1420,23 +1445,22 @@ And I write on it the following..
 </code></pre>
 <h2 id="creating-the-users-with-their-relative-passwords">Creating the Users with their relative passwords</h2>
 <p>The default user is the root user. To create other users
-Ora devo creare diversi utenti e una password, altrimenti ci sarà solo 1 utente, ovvero il root
-Per la password root basta passwd senza nessun parametro da linea di comando:
+Now I have to create several users and a password, otherwise there will be only 1 user, namely the root
+For the root password, just passwd without any command line parameters:
 passwd
 3394
-Per l'utente:
+For the user:
 useradd -m angelo
-Creo password utente:
+I create user password:
 passwd angelo
 3394</p>
-<p>Checkpoint 21:20</p>
-<p>Su Unix ci sono vari gruppi ai quali gli utenti possono partecipare.
-usermod è il comando in questione. Aggiungo l'utente angelo ai seguenti
-gruppi:
+<p>On Unix there are various groups that users can join.
+usermod is the command in question. I add the user angelo to the following
+groups:
 usermod -aG wheel,audio,video,optical,storage angelo
-Edito il file sudoers dove sudo attribuisce i privilegi, e io voglio dare all'utente angelo il privilegio di usare sudo:
+I edit the sudoers file where sudo assigns privileges, and I want to give the user angelo the privilege to use sudo:
 visudo
-Tolgo il commento da:</p>
+I remove the comment from:</p>
 <pre><code class="language-shell"># %wheel ALL=(ALL) ALL // Da rivedere bene ..
 </code></pre>
 <h3 id="install-sudo">Install sudo</h3>
@@ -1460,8 +1484,8 @@ Luckily it's a simple fix you have to add --removable so the right command be
 Credit goes to Ryan in the comments of the Open 
 Source Home's tutorial of how to install arch that video is also here on Youtube.
 This works:
-grub-install --target=x86_64-efi --bootloader-id=GRUB --efi-directory=/boot/EFI --removable
-Creo il file delle configurazioni di grub:
+grub-install --target=x86_64-efi --bootloader-id=GRUB --efi-directory=/boot/EFI --removable</p>
+<p>Create the GRUB config file:
 grub-mkconfig -o /boot/grub/grub.cfg</p>
 <p>Install iwd onto the machine before leaving the live installation process
 https://bbs.archlinux.org/viewtopic.php?id=187798</p>
@@ -1474,14 +1498,21 @@ systemctl enable iwd</p>
 exit</p>
 <p>Unmount
 umount -l /mnt</p>
-<p>Ora ci sono due strade:
-1) reboot se sei con un vero pc</p>
-<p>2) shutdown now se sei in una VM
-vai su storage
-clicca sulla iso
-e rimuove lo storage e restart</p>
-<p>Linux Drive and Partition Config (dd, fdisk, resize2fs, lsblk, tune2fs and more)
-Sed, Awk, Grep, Cat, gpg, ssh, git, make, zsh</p>
+<p>Now there's to endings to this:
+1. <code>reboot</code> if running on bare metal</p>
+<ol>
+<li><code>shutdown now</code> if running on a VM</li>
+</ol>
+<h2 id="linux-drive-and-partition-config">Linux Drive and Partition Config</h2>
+<p>add, fdisk, resize2fs, lsblk, tune2fs and more
+sed, awk, grep, cat, gpg, ssh, git, make, zsh</p>
+
+
+
+
+
+
+
 
 
 
@@ -1492,6 +1523,7 @@ Sed, Awk, Grep, Cat, gpg, ssh, git, make, zsh</p>
             </div>
           
           
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
       </main>
@@ -1520,10 +1552,10 @@ Sed, Awk, Grep, Cat, gpg, ssh, git, make, zsh</p>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.sections", "navigation.path"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.sections", "navigation.path"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.cd18aaf1.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
       
     
   </body>
