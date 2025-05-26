@@ -118,12 +118,14 @@ Se sbaglio ad assegnare il tipo di partizione delle prime due, posso
 sempre premere t e il numero della partizione alla quale devo cambiare
 il tipo:
 
-esempio:
+example:
+```shell
 t
 1
-L per listare i tipi di partizione disponibili
-1 per EFI System
-e cambia da linux file system a EFI System
+L # listing available partitions
+1 # for EFI system
+e # change from linux file system to an EFI System
+```
 
 t
 2
@@ -135,8 +137,8 @@ Alla fine premi w per scrivere sul disco le nostre impostazioni
 
 ## File System
 
-Ora dobbiamo creare i diversi tipi di File System rispettivamente per
-ogni partizione che abbiamo creato:
+Now we need to create the different types of File System respectively for
+each partition we have created:
 
 Creating the file system Fat 32 in sda1
 ```shell
@@ -174,11 +176,10 @@ pacstrap /mnt base linux linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
 ```
 
-Ora diventiamo root della nostra installazione, ovvero passiamo dalla pendrive alla partizione /dev/sda3:
+Now we become root of our installation, that is, we move from the pendrive to the /dev/sda3 partition:
 arch-chroot /mnt
 
-Ora il prompt dovrebbe essere cambiato, perché siamo nel nostro sistema operativo di base nella nostra partizione
-/dev/sda3 dentro il nostro file system
+Now the prompt should be changed, because we are in our base operating system in our /dev/sda3 partition inside our file system
 
 ## Locale
 
@@ -228,7 +229,7 @@ locale-gen
 Creating a config file on /etc/hostname
 
 ```shell
-vim /etc/hostname
+nvim /etc/hostname
 # I could write, for example:
 t440p
 ```
@@ -236,7 +237,7 @@ t440p
 ## Modifichiamo il file hosts
 
 ```shell
-vim /etc/hosts
+nvim /etc/hosts
   ```
 
 And I write on it the following..
@@ -250,25 +251,23 @@ And I write on it the following..
 ## Creating the Users with their relative passwords
 
 The default user is the root user. To create other users
-Ora devo creare diversi utenti e una password, altrimenti ci sarà solo 1 utente, ovvero il root
-Per la password root basta passwd senza nessun parametro da linea di comando:
+Now I have to create several users and a password, otherwise there will be only 1 user, namely the root
+For the root password, just passwd without any command line parameters:
 passwd
 3394
-Per l'utente:
+For the user:
 useradd -m angelo
-Creo password utente:
+I create user password:
 passwd angelo
 3394
 
-Checkpoint 21:20
-
-Su Unix ci sono vari gruppi ai quali gli utenti possono partecipare.
-usermod è il comando in questione. Aggiungo l'utente angelo ai seguenti
-gruppi:
+On Unix there are various groups that users can join.
+usermod is the command in question. I add the user angelo to the following
+groups:
 usermod -aG wheel,audio,video,optical,storage angelo
-Edito il file sudoers dove sudo attribuisce i privilegi, e io voglio dare all'utente angelo il privilegio di usare sudo:
+I edit the sudoers file where sudo assigns privileges, and I want to give the user angelo the privilege to use sudo:
 visudo
-Tolgo il commento da:
+I remove the comment from:
 
 ```shell
 # %wheel ALL=(ALL) ALL // Da rivedere bene ..
@@ -306,7 +305,8 @@ Credit goes to Ryan in the comments of the Open
 Source Home's tutorial of how to install arch that video is also here on Youtube.
 This works:
 grub-install --target=x86_64-efi --bootloader-id=GRUB --efi-directory=/boot/EFI --removable
-Creo il file delle configurazioni di grub:
+
+Create the GRUB config file:
 grub-mkconfig -o /boot/grub/grub.cfg
 
 Install iwd onto the machine before leaving the live installation process
@@ -325,13 +325,11 @@ exit
 Unmount
 umount -l /mnt
 
-Ora ci sono due strade:
-1) reboot se sei con un vero pc
+Now there's to endings to this:
+1. `reboot` if running on bare metal
 
-2) shutdown now se sei in una VM
-vai su storage
-clicca sulla iso
-e rimuove lo storage e restart
+2. `shutdown now` if running on a VM
 
-Linux Drive and Partition Config (dd, fdisk, resize2fs, lsblk, tune2fs and more)
-Sed, Awk, Grep, Cat, gpg, ssh, git, make, zsh
+## Linux Drive and Partition Config 
+add, fdisk, resize2fs, lsblk, tune2fs and more
+sed, awk, grep, cat, gpg, ssh, git, make, zsh

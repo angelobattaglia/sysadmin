@@ -34,7 +34,7 @@ The operating system is a development environment.
 - [The FreeBSD manual](https://docs.freebsd.org/en/books/handbook/basics/)
 - [The Gentoo Handbook](https://wiki.gentoo.org/wiki/Handbook:AMD64)
 - [The Archwiki](https://wiki.archlinux.org/)
-- [*THE* Ultimate Book List](https://wiki.installgentoo.com/wiki/Programming_resources#God-tier_books)
+- [Some great Book List](https://wiki.installgentoo.com/wiki/Programming_resources#God-tier_books)
 - [Programming Concepts to know](https://wiki.installgentoo.com/wiki/Programming_concepts)
 - [Teach yourself CS](https://teachyourselfcs.com/)
 - [MATLAB examples](https://matrixlab-examples.com)
@@ -52,12 +52,15 @@ The operating system is a development environment.
 - [Terminals are sexy](https://terminalsare.sexy/)
 - [Various Linux tutorials](http://xahlee.info/linux/linux_common_commands.html)
 - [cheat sheet shell](https://cht.sh)
+- [cron jobs](https://blog.sanctum.geek.nz/cron-best-practices/)
+- [UNIX as IDE](https://blog.sanctum.geek.nz/series/unix-as-ide/)
 
 ### Practice Regular Expressions
 
 - [RegexGolf](https://alf.nu/RegexGolf)
 - [Regexone](https://regexone.com/)
 - [Regex101](https://regex101.com/)
+- [Regexr](https://regexr.com/)
 
 ### Latex and Markdown
 
@@ -65,10 +68,12 @@ The operating system is a development environment.
 - [Latex web editor](https://texviewer.herokuapp.com/)
 - [Latex tutorial](https://en.wikibooks.org/wiki/LaTeX)
 - [Markdown tutorial](https://www.markdownguide.org/)
+- [Latex Notes](https://web.stanford.edu/class/ee364b/latex_templates/template_notes.pdf)
 - [Handwritten formula classification to Latex](https://detexify.kirelabs.org/classify.html)
 - [Math Editor for Latex](https://editor.codecogs.com/)
 - [Latex AMS](https://www.ams.org/arc/resources/amslatex-about.html)
 - [Latex AMS: short guide](https://ctan.mirror.garr.it/mirrors/ctan/info/short-math-guide/)
+- [Latex to images](https://latex.to/)
 
 ### Make
 
@@ -103,6 +108,7 @@ The operating system is a development environment.
 - [Practice: Codeforces ladder](https://a2oj.com/Ladders.html)
 - [Practice: Project Euler](https://projecteuler.net/archives)
 - [Practice: AtCoder]()
+- [CS 97SI: Introduction to Programming Contests](https://web.stanford.edu/class/cs97si/)
 
 ### Project based learning
 

@@ -1,6 +1,6 @@
 # Connecting to a GPU cluster: a walkthrough
 
-Connecting to a GPU cluster to perform calculation is becoming an everyday task we all have to measure ourselves with.
+Connecting to a GPU cluster to perform calculations is becoming an everyday task we all have to measure ourselves with.
 It is important to understand how to "ssh into a remote server" to perform computations, and, in the context of Deep Learning,
 we are expected to run the experiments using CUDA or python3, perhaps with the aid of an interface that a jupyter notebook, other
 than the terminal.
@@ -69,6 +69,28 @@ scp -i ~/Downloads/test-key-gpu.pem random.txt ubuntu@96.76.203.50:~/
 ```
 
 This copies the file `random.txt` to the home directory of the `ubuntu` user on the remote instance.
+
+## Checking on the nvidia system:
+
+To verify that CUDA has been installed successfully, run the following command:
+
+```bash
+nvcc --version
+```
+
+This should display the installed CUDA version. You can also check if the driver is working correctly with:
+
+```bash
+nvidia-smi
+```
+
+You can also install CUDA samples to verify that everything is working correctly. 
+The samples can be found in the CUDA installation directory:
+
+```bash
+cd /usr/local/cuda/samples
+sudo make
+```
 
 ## Monitoring Python Processes:
 

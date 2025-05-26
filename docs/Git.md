@@ -9,7 +9,7 @@ TODOs: Git worktree, git bare repository, git submodules
 When you install git for the first time on the new machine. Set the default command line editor as vim.
 
 ```shell
-    git config --global core.editor vim
+    git config --global core.editor nvim
     git config --global user.name "John Doe"
     git config --global user.email "john@doe.net"
     git config --global color.ui "auto"
@@ -26,7 +26,7 @@ To start a new git project on github:
 
 ```shell
     git init
-    add .gitignore # for the files you don't want to commit
+    git add .gitignore # for the files you don't want to commit
     git remote add 'name of the remote' www.github.com/angelobattaglia/progetto
     git remote set-url 'name of the remote' git@github.com:angelobattaglia/progetto.git
     git add -A or git add .
@@ -116,6 +116,114 @@ otherwise you won’t be able to switch to that branch.
 git checkout <existing_branch>
 ``` 
 
+## Contributing
+
+Here's how you can modify the repo and send a pull request:
+
+### **Step 1: Fork the Repository**
+Before making any changes, you need to fork the repository so that you can push your changes to your own version of the repo.
+1. Go to the repo: **[username/repo](https://github.com/)**
+2. Click the **"Fork"** button on the top-right.
+3. This will create a copy of the repo in your own GitHub account.
+
+---
+
+### **Step 2: Clone Your Forked Repository**
+Since you've already cloned the original repo to your desktop, you'll need to switch to your own fork.
+
+#### **Check Remote Repositories**
+Run:
+```bash
+git remote -v
+```
+It will show:
+```
+origin  https://github.com/username/repo.git (fetch)
+origin  https://github.com/username/repo.git (push)
+```
+Since you don’t have push access to the original repo, you need to change it to your own fork.
+
+#### **Change the Remote to Your Fork**
+Replace `your-username` with your GitHub username:
+```bash
+git remote set-url origin https://github.com/your-username/algo.git
+```
+Now, verify the remote again:
+```bash
+git remote -v
+```
+It should show:
+```
+origin  https://github.com/your-username/algo.git (fetch)
+origin  https://github.com/your-username/algo.git (push)
+```
+
+---
+
+### **Step 3: Create a New Branch**
+It's best practice to work in a new branch rather than `main` or `master`.
+```bash
+git checkout -b my-feature
+```
+Replace `my-feature` with a meaningful branch name.
+
+---
+
+### **Step 4: Make Your Changes**
+Modify the code as needed, then stage the changes:
+```bash
+git add .
+```
+Commit the changes:
+```bash
+git commit -m "Added new feature XYZ"
+```
+
+---
+
+### **Step 5: Push to Your Fork**
+Push your branch to **your forked repository**:
+```bash
+git push origin my-feature
+```
+
+---
+
+### **Step 6: Create a Pull Request**
+1. Go to **your fork** of the repository on GitHub.
+2. You'll see a prompt like "Compare & pull request"—click it.
+3. Add a title and description for your changes.
+4. Click **Create pull request**.
+
+Now, the original repository owner can review and merge your changes.
+
+---
+
+### **Optional: Keep Your Fork Updated**
+If the original repo gets updates, you should sync your fork to avoid conflicts:
+```bash
+git remote add upstream https://github.com/username/repo.git
+git fetch upstream
+git merge upstream/main
+git push origin main
+```
+
+##### Then again:
+
+You can list all your local branches and see which one you're currently on by using the following command:
+
+```bash
+git branch
+```
+
+This command will display all local branches, with the branch you're on marked by an asterisk (`*`). If you also want to see the remote branches, you can use:
+
+```bash
+git branch -a
+```
+
+Additionally, running `git status` in your terminal will show you the current branch at the top of the status message.
+
 #### How to merge
 Merging in Git, especially when working with GitHub, is a common task that integrates changes from one branch into another. Here's a comprehensive guide on how to merge changes using Git with GitHub, and subsequently update your local repository to reflect these changes.
 
@@ -165,6 +273,7 @@ After merging changes on GitHub, you'll want to update your local repository to 
 
 Merging and updating your repository in Git can initially seem complex, but with practice, it becomes a routine part of managing code changes. By following these steps and best practices, you'll ensure that your project remains current and organized.
 
+### After Merging
 
 If you've merged changes on GitHub and your local repository isn't up to date with those changes, you can update your local repository by pulling the changes from GitHub. This process involves fetching the changes made on the remote and merging them into your local branch. Here's how you can do it:
 
@@ -255,8 +364,8 @@ List all the tags:
 ``` 
     git tag
 ``` 
-## Reset and Rebase
 
+## Reset and Rebase
 
 To delete a commit with a typo in the commit message on your GitHub project, you can follow these steps:
 
@@ -323,9 +432,10 @@ git log
 
 This should remove the commit with the typo from your project's history on GitHub. Remember, force-pushing changes the commit history and can affect other collaborators' work, so proceed with caution and communicate with your team if necessary.
 
-Sure, let's go over Step 3 in more detail. This step involves using interactive rebase to modify your commit history, which is particularly useful if the mistaken commit is not the latest one.
 
-### Step 3: Interactive Rebase
+### Interactive Rebase
+
+This step involves using interactive rebase to modify your commit history, which is particularly useful if the mistaken commit is not the latest one.
 
 1. **Start Interactive Rebase:**
 
@@ -353,11 +463,11 @@ Sure, let's go over Step 3 in more detail. This step involves using interactive 
 
    - **Edit the Commit Message (if you want to correct it):** Change the word `pick` to `edit` on the line with the mistaken commit:
 
-     ```
-     pick a1b2c3d Commit message before the mistake
-     edit b2c3d4e Mistaken commit explaination
-     pick c3d4e5f Commit message after the mistake
-     ```
+    ```
+    pick a1b2c3d Commit message before the mistake
+    edit b2c3d4e Mistaken commit explaination
+    pick c3d4e5f Commit message after the mistake
+    ```
 
 3. **Save and Exit the Editor:**
 
@@ -394,3 +504,42 @@ Sure, let's go over Step 3 in more detail. This step involves using interactive 
 ### Summary
 
 In this step, you've used an interactive rebase to either remove or edit a specific commit. This is a powerful way to clean up your commit history, but it should be used carefully, especially when collaborating with others, as it rewrites the commit history.
+
+### Monitoring the latest change made to a Git repository
+
+To know the **latest change made to a Git repository**, you can use the following command in your terminal:
+
+```bash
+git log -1
+```
+
+This command shows the **most recent commit**, including:
+
+- Commit hash
+- Author
+- Date
+- Commit message
+
+### Example Output:
+```
+commit 1a2b3c4d5e6f7g8h9i0j
+Author: Jane Doe <jane@example.com>
+Date:   Wed Apr 30 16:00:00 2025 +0200
+
+    Fix typo in README and update installation instructions
+```
+
+### If you want just a one-liner summary:
+```bash
+git log -1 --oneline
+```
+
+### To see which files were changed in that commit:
+```bash
+git show --name-only
+```
+
+Or to combine both into a more readable view:
+```bash
+git show --stat -1
+```
